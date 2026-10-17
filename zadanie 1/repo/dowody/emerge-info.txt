@@ -1,0 +1,77 @@
+Portage 3.0.82.2 (python 3.14.7-final-0, default/linux/amd64/23.0/systemd, gcc-16, glibc-2.43-r4, 6.18.57-gentoo x86_64)
+=================================================================
+System uname: Linux-6.18.57-gentoo-x86_64-AMD_Ryzen_7_3700X_8-Core_Processor-with-glibc2.43
+KiB Mem:     3999116 total,   3718700 free
+KiB Swap:    4194300 total,   4194300 free
+Timestamp of repository gentoo: Sat, 17 Oct 2026 00:45:00 +0000
+Head commit of repository gentoo: edf4cb09937ae6320d49052d1a8596e06255c684
+sh: bash 5.3_p20
+coreutils: (GNU coreutils) 9.11
+ld: GNU ld (Gentoo 2.47 p1) 2.47.0
+app-misc/pax-utils:        1.3.11::gentoo
+app-shells/bash:           5.3_p20::gentoo
+dev-build/autoconf:        2.73-r2::gentoo
+dev-build/automake:        1.18.1-r1::gentoo
+dev-build/cmake:           4.3.4::gentoo
+dev-build/libtool:         2.5.4::gentoo
+dev-build/make:            4.4.1-r102::gentoo
+dev-build/meson:           1.12.1::gentoo
+dev-lang/perl:             5.44.0::gentoo
+dev-lang/python:           3.14.7::gentoo
+sys-apps/baselayout:       2.18-r1::gentoo
+sys-apps/sandbox:          2.49::gentoo
+sys-apps/systemd:          261.2::gentoo
+sys-devel/binutils:        2.47::gentoo
+sys-devel/binutils-config: 5.6::gentoo
+sys-devel/gcc:             16.2.1_p20260926::gentoo
+sys-devel/gcc-config:      2.12.2::gentoo
+sys-kernel/linux-headers:  6.18::gentoo (virtual/os-headers)
+sys-libs/glibc:            2.43-r4::gentoo
+Repositories:
+
+gentoo
+    location: /var/db/repos/gentoo
+    sync-type: rsync
+    sync-uri: rsync://rsync.gentoo.org/gentoo-portage
+    priority: -1000
+    volatile: False
+    sync-rsync-verify-jobs: 1
+    sync-rsync-extra-opts: 
+    sync-rsync-verify-max-age: 3
+    sync-rsync-verify-metamanifest: yes
+
+Binary Repositories:
+
+gentoo
+    location: /var/cache/binhost/gentoo
+    priority: 1
+    sync-uri: https://distfiles.gentoo.org/releases/amd64/binpackages/23.0/x86-64
+    verify-signature: True
+
+ACCEPT_KEYWORDS="amd64"
+ACCEPT_LICENSE="@FREE"
+CBUILD="x86_64-pc-linux-gnu"
+CFLAGS="-O2 -pipe -march=native"
+CHOST="x86_64-pc-linux-gnu"
+CONFIG_PROTECT="/etc"
+CONFIG_PROTECT_MASK="/etc/ca-certificates.conf /etc/env.d /etc/gconf /etc/gentoo-release /etc/sandbox.d"
+CXXFLAGS="-O2 -pipe -march=native"
+DISTDIR="/var/cache/distfiles"
+ENV_UNSET="CARGO_HOME DBUS_SESSION_BUS_ADDRESS DISPLAY GDK_PIXBUF_MODULE_FILE GOBIN GOPATH PERL5LIB PERL5OPT PERLPREFIX PERL_CORE PERL_MB_OPT PERL_MM_OPT XAUTHORITY XDG_CACHE_HOME XDG_CONFIG_DIRS XDG_CONFIG_HOME XDG_DATA_DIRS XDG_DATA_HOME XDG_RUNTIME_DIR XDG_STATE_HOME"
+FCFLAGS="-O2 -pipe -march=native"
+FEATURES="assume-digests binpkg-docompress binpkg-dostrip binpkg-logs binpkg-multi-instance buildpkg-live compress-index config-protect-if-modified distlocks ebuild-locks fixlafiles ipc-sandbox merge-sync merge-wait multilib-strict network-sandbox news parallel-fetch pid-sandbox pkgdir-index-trusted preserve-libs protect-owned qa-unresolved-soname-deps sandbox strict unknown-features-warn unmerge-logs unmerge-orphans userfetch userpriv usersandbox usersync xattr"
+FFLAGS="-O2 -pipe -march=native"
+GENTOO_MIRRORS="http://distfiles.gentoo.org"
+LANG="en_US.UTF-8"
+LDFLAGS="-Wl,-O1 -Wl,--as-needed -Wl,-z,pack-relative-relocs"
+LEX="flex"
+MAKEOPTS="-j2 -l2"
+PKGDIR="/var/cache/binpkgs"
+PORTAGE_COMPRESS="bzip2"
+PORTAGE_CONFIGROOT="/"
+PORTAGE_RSYNC_OPTS="--recursive --links --safe-links --perms --times --omit-dir-times --compress --force --whole-file --delete --stats --human-readable --timeout=180 --exclude=/distfiles --exclude=/local --exclude=/packages --exclude=/.git"
+PORTAGE_TMPDIR="/var/tmp"
+SHELL="/bin/bash"
+USE="acl amd64 bzip2 cet crypt gdbm iconv ipv6 libtirpc multilib ncurses nls openmp pam pcre readline seccomp ssl systemd test-rust udev unicode xattr zlib" ABI_X86="64" ADA_TARGET="gcc_15" APACHE2_MODULES="authn_core authz_core socache_shmcb unixd actions alias auth_basic authn_anon authn_dbm authn_file authz_dbm authz_groupfile authz_host authz_owner authz_user autoindex cache cgi cgid dav dav_fs dav_lock deflate dir env expires ext_filter file_cache filter headers include info log_config logio mime mime_magic negotiation rewrite setenvif speling status unique_id userdir usertrack vhost_alias" CALLIGRA_FEATURES="karbon sheets words" COLLECTD_PLUGINS="df interface irq load memory rrdtool swap syslog" CPU_FLAGS_X86="mmx mmxext sse sse2 aes bmi1 bmi2 pclmul popcnt rdrand sse3 sse4_1 sse4_2 sse4a ssse3" ELIBC="glibc" GPSD_PROTOCOLS="ashtech aivdm earthmate evermore fv18 garmin garmintxt gpsclock greis isync itrax navcom oncore skytraq superstar2 tsip tripmate tnt" GRUB_PLATFORMS="efi-64" GUILE_SINGLE_TARGET="3-0" GUILE_TARGETS="3-0" INPUT_DEVICES="libinput" KERNEL="linux" LCD_DEVICES="bayrad cfontz glk hd44780 lb216 lcdm001 mtxorb text" LLVM_TARGETS="X86" LUA_SINGLE_TARGET="lua5-1" LUA_TARGETS="lua5-1" OFFICE_IMPLEMENTATION="libreoffice" PHP_TARGETS="php8-3" POSTGRES_TARGETS="postgres17" PYTHON_SINGLE_TARGET="python3_14" PYTHON_TARGETS="python3_14" QEMU_SOFTMMU_TARGETS="x86_64" RUBY_TARGETS="ruby33" XTABLES_ADDONS="quota2 psd pknock lscan length2 ipv4options ipp2p iface geoip fuzzy condition tarpit sysrq proto logmark ipmark dhcpmac delude chaos account"
+Unset:  ADDR2LINE, AR, ARFLAGS, AS, ASFLAGS, CC, CCLD, CONFIG_SHELL, CPP, CPPFLAGS, CTARGET, CXX, CXXFILT, ELFEDIT, EMERGE_DEFAULT_OPTS, EXTRA_ECONF, F77FLAGS, FC, GCOV, GPROF, INSTALL_MASK, LC_ALL, LD, LFLAGS, LIBTOOL, LINGUAS, MAKE, MAKEFLAGS, NM, OBJCOPY, OBJDUMP, PORTAGE_BINHOST, PORTAGE_BUNZIP2_COMMAND, PORTAGE_COMPRESS_FLAGS, PORTAGE_RSYNC_EXTRA_OPTS, PYTHONPATH, RANLIB, READELF, RUSTFLAGS, SIZE, STRINGS, STRIP, YACC, YFLAGS
+

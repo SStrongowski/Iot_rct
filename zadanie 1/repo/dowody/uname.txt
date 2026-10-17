@@ -1,0 +1,1 @@
+Linux gentoo-vm 6.18.57-gentoo #1 SMP PREEMPT_DYNAMIC Sat Oct 17 15:36:49 CEST 2026 x86_64 AMD Ryzen 7 3700X 8-Core Processor AuthenticAMD GNU/Linux

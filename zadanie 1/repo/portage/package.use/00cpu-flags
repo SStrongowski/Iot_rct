@@ -1,0 +1,1 @@
+*/* CPU_FLAGS_X86: aes bmi1 bmi2 mmx mmxext pclmul popcnt rdrand sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3
