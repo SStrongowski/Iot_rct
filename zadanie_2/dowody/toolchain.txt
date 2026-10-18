@@ -1,0 +1,18 @@
+== kompilator i linker ==
+aarch64-unknown-linux-gnu-gcc (Gentoo 16.2.1_p20260926 p1) 16.2.1 20260926
+GNU ld (Gentoo 2.47 p1) 2.47.0
+
+== paczki toolchaina (zbudowane przez crossdev) ==
+binutils-2.47
+gcc-16.2.1_p20260926
+glibc-2.43-r4
+linux-headers-6.18
+
+== sysroot: biblioteki i nagłówki dla ARM64 ==
+etc
+lib
+lib64
+sbin
+sys-include
+usr
+var

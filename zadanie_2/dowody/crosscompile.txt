@@ -1,0 +1,14 @@
+== typ plików ==
+hello-x86_64: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=fe6729df44e193af1969454da0409797555d42d6, for GNU/Linux 3.2.0, not stripped
+hello-arm64:  ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, BuildID[sha1]=6918df1bc3636b041cd38962706e3112717343e5, for GNU/Linux 3.7.0, with debug_info, not stripped
+
+== nagłówek ELF (pole Machine) ==
+  Class:                             ELF64
+  Machine:                           AArch64
+
+== uruchomienie wersji x86_64 ==
+Skompilowano dla: x86_64
+Uruchomiono na:   x86_64
+
+== uruchomienie wersji ARM64 na x86_64 ==
+-bash: ./hello-arm64: cannot execute binary file: Exec format error

@@ -1,0 +1,15 @@
+== pochodzenie paczki ==
+[gentoo-vm]
+priority = 10000
+sync-uri = http://10.0.2.2:8080
+verify-signature = false
+
+== zainstalowane sudo ==
+/usr/bin/sudo: setuid ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=e0afce509ca3495860a532ef3dac8a3daea6a961, for GNU/Linux 3.7.0, stripped
+Sudo version 1.9.17p2
+
+== flagi sudo na płytce ==
+arm64 elibc_glibc kernel_linux nls pam secure-path ssl
+
+== konto nie-root ==
+uid=1000(gentoo_test_rpi) gid=1000(gentoo_test_rpi) groups=1000(gentoo_test_rpi),10(wheel)

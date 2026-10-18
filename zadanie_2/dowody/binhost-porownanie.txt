@@ -1,0 +1,61 @@
+# Instalacja app-admin/sudo: kompilacja na płytce vs binhost
+# Sun Oct 18 16:30:31 CEST 2026  |  host: gentoo-rpi  |  arch: aarch64
+# Legenda: [ebuild] = kompilacja ze źródeł na płytce, [binary] = gotowa paczka z binhosta
+
+## 1. Bez binhosta, domyślne USE
+
+These are the packages that would be merged, in order:
+
+Calculating dependencies ... done!
+Dependency resolution took 13.76 s (backtrack: 0/20).
+
+[ebuild  N     ] virtual/mta-1-r2::gentoo  0 KiB
+[ebuild  N     ] app-admin/sudo-1.9.17_p2::gentoo  USE="nls pam secure-path sendmail ssl -gcrypt -ldap -offensive -sasl (-selinux) (-skey) (-sssd) -verify-sig" 0 KiB
+
+Total: 2 packages (2 new), Size of downloads: 0 KiB
+
+ * IMPORTANT: 15 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+
+
+## 2. Oficjalny binhost Gentoo, domyślne USE
+[gentoo] Local copy of remote index is within TTL and will be used.
+
+These are the packages that would be merged, in order:
+
+Calculating dependencies ... done!
+Dependency resolution took 17.00 s (backtrack: 0/20).
+
+[binary  N g   ] virtual/mta-1-r2-1::gentoo  20 KiB
+[binary  N g   ] app-admin/sudo-1.9.17_p2-2::gentoo  USE="nls pam secure-path sendmail ssl -gcrypt -ldap -offensive -sasl (-selinux) (-skey) (-sssd) -verify-sig" 1660 KiB
+
+Total: 2 packages (2 new, 2 binaries), Size of downloads: 1680 KiB
+
+ * IMPORTANT: 15 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+
+
+## 3. Oficjalny binhost + własne USE (app-admin/sudo -sendmail)
+[gentoo] Local copy of remote index is within TTL and will be used.
+
+These are the packages that would be merged, in order:
+
+Calculating dependencies ... done!
+Dependency resolution took 13.99 s (backtrack: 0/20).
+
+[ebuild  N     ] app-admin/sudo-1.9.17_p2::gentoo  USE="nls pam secure-path ssl -gcrypt -ldap -offensive -sasl (-selinux) -sendmail (-skey) (-sssd) -verify-sig" 0 KiB
+
+Total: 1 package (1 new), Size of downloads: 0 KiB
+
+!!! The following binary packages have been ignored due to non matching USE:
+
+    =app-admin/sudo-1.9.17_p2 selinux sendmail
+    =app-admin/sudo-1.9.17_p2 sendmail
+
+NOTE: The --binpkg-respect-use=n option will prevent emerge
+      from ignoring these binary packages if possible.
+      Using --binpkg-respect-use=y will silence this warning.
+
+ * IMPORTANT: 15 news items need reading for repository 'gentoo'.
+ * Use eselect news read to view new items.
+

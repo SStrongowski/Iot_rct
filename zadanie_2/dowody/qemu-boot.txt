@@ -1,0 +1,26 @@
+== kernel ==
+Linux gentoo-rpi 6.18.57-gentoo #1 SMP PREEMPT Sun Oct 18 13:38:38 CEST 2026 aarch64 GNU/Linux
+
+== procesor ==
+CPU part	: 0xd0b
+
+== pamięć ==
+               total        used        free      shared  buff/cache   available
+Mem:           1.9Gi       154Mi       1.7Gi       492Ki       162Mi       1.8Gi
+Swap:             0B          0B          0B
+
+== usługi ==
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+
+== sieć ==
+IDX LINK   TYPE     OPERATIONAL SETUP
+  1 lo     loopback carrier     unmanaged
+  2 enp0s1 ether    routable    configured
+
+2 links listed.
+
+== hello-arm64 ==
+Skompilowano dla: aarch64 (ARM64)
+Uruchomiono na:   aarch64

@@ -1,0 +1,7 @@
+gpg: Signature made Tue 13 Oct 2026 02:01:06 PM CEST
+gpg:                using RSA key 534E4209AB49EEE1C19D96162C44695DB9F6043D
+gpg: Good signature from "Gentoo Linux Release Engineering (Automated Weekly Release Key) <releng@gentoo.org>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+      13EBBDBEDE7A12775DFDB1BABB572E0E2D182910
+      534E4209AB49EEE1C19D96162C44695DB9F6043D

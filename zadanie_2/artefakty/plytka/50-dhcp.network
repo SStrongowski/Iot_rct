@@ -1,0 +1,7 @@
+[Match]
+Name=en*
+
+[Network]
+DHCP=yes
+DNS=10.0.2.3
+IPv6AcceptRA=no
