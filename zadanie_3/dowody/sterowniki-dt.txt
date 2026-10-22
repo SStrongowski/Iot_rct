@@ -1,0 +1,13 @@
+== gpio-keys ==
+/sys/bus/platform/drivers/gpio-keys
+/sys/firmware/devicetree/base/gpio-keys
+of:Ngpio-keysT(null)Cgpio-keys
+
+
+== pl031 ==
+9000000.pl011
+9010000.pl031
+9030000.pl061
+/sys/bus/amba/drivers/rtc-pl031
+00141031
+rtc-pl031 9010000.pl031

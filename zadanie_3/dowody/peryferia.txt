@@ -1,0 +1,131 @@
+Raport peryferiów: gentoo-rpi, 6.18.57-gentoo, 2026-10-22 18:10:21
+Płytka: linux,dummy-virt
+
+================ 1. UART (port szeregowy PL011) ================
+urządzenie: platform/9000000.pl011/9000000.pl011:0/9000000.pl011:0.0
+sterownik:  port/sys/bus/serial-base/drivers/port
+węzeł DT:   /pl011@9000000
+[ OK ] zapis do /dev/ttyAMA0 (sprawdź okno konsoli QEMU)
+
+================ 2. RTC (zegar czasu rzeczywistego PL031) ================
+urządzenie: platform/9010000.pl031
+sterownik:  rtc-pl031/sys/bus/amba/drivers/rtc-pl031
+węzeł DT:   /pl031@9010000
+czas z RTC: 2026-10-22 16:10:22 UTC
+[ OK ] odczyt RTC (hwclock -r)
+
+================ 3. GPIO (kontroler PL061) ================
+urządzenie: platform/9030000.pl061
+sterownik:  pl061_gpio/sys/bus/amba/drivers/pl061_gpio
+węzeł DT:   /pl061@9030000
+--- linie GPIO (debugfs) ---
+gpiochip0: 8 GPIOs, parent: amba/9030000.pl061, 9030000.pl061:
+ gpio-3   (                    |GPIO Key Poweroff   ) in  lo IRQ 
+[ OK ] linia GPIO zajęta przez przycisk zasilania
+
+================ 4. Przycisk zasilania (gpio-keys, korzysta z GPIO PL061) ================
+urządzenie: /sys/bus/platform/devices/gpio-keys
+sterownik:  gpio-keys/sys/bus/platform/drivers/gpio-keys
+węzeł DT:   /gpio-keys
+I: Bus=0019 Vendor=0001 Product=0001 Version=0100
+N: Name="gpio-keys"
+P: Phys=gpio-keys/input0
+S: Sysfs=/devices/platform/gpio-keys/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+[ OK ] urządzenie wejściowe gpio-keys zarejestrowane
+test ręczny: monitor QEMU (Ctrl+A, C) -> system_powerdown -> płytka się wyłącza
+
+================ 5. PCIe (kontroler i urządzenia) ================
+urządzenie: platform/4010000000.pcie
+sterownik:  pci-host-generic/sys/bus/platform/drivers/pci-host-generic
+węzeł DT:   /pcie@10000000
+--- urządzenia na magistrali PCI ---
+0000:00:00.0  vendor=0x1b36 device=0x0008 class=0x060000  sterownik=driver/sys/devices/platform/4010000000.pcie/pci0000:00/0000:00:00.0/driver
+0000:00:01.0  vendor=0x1af4 device=0x1000 class=0x020000  sterownik=virtio-pci/sys/bus/pci/drivers/virtio-pci
+0000:00:02.0  vendor=0x1b36 device=0x000d class=0x0c0330  sterownik=xhci_hcd/sys/bus/pci/drivers/xhci_hcd
+0000:00:03.0  vendor=0x1af4 device=0x1001 class=0x010000  sterownik=virtio-pci/sys/bus/pci/drivers/virtio-pci
+[ OK ] wykryto urządzenia PCI
+
+================ 6. Ethernet ================
+interfejs:  enp0s1
+urządzenie: platform/4010000000.pcie/pci0000:00/0000:00:01.0/virtio0
+sterownik:  virtio_net/sys/bus/virtio/drivers/virtio_net
+węzeł DT:   /sys/devices/platform/4010000000.pcie/pci0000:00/0000:00:01.0/virtio0/of_node
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s1           UP             10.0.2.15/24 metric 1024 fe80::5054:ff:fe12:3456/64 
+[FAIL] połączenie HTTPS z distfiles.gentoo.org (sieć + DNS)
+
+================ 7. Dysk systemowy (virtio-blk) ================
+urządzenie: platform/4010000000.pcie/pci0000:00/0000:00:03.0/virtio1
+sterownik:  virtio_blk/sys/bus/virtio/drivers/virtio_blk
+węzeł DT:   /sys/devices/platform/4010000000.pcie/pci0000:00/0000:00:03.0/virtio1/of_node
+NAME   MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+vda    254:0    0   8G  0 disk 
+├─vda1 254:1    0 512M  0 part /boot
+└─vda2 254:2    0 7.5G  0 part /
+[ OK ] system plików root zamontowany
+
+================ 8. USB ================
+--- kontroler (usb1) ---
+urządzenie: platform/4010000000.pcie/pci0000:00/0000:00:02.0
+sterownik:  xhci_hcd/sys/bus/pci/drivers/xhci_hcd
+węzeł DT:   /sys/devices/platform/4010000000.pcie/pci0000:00/0000:00:02.0/of_node
+--- kontroler (usb2) ---
+urządzenie: platform/4010000000.pcie/pci0000:00/0000:00:02.0
+sterownik:  xhci_hcd/sys/bus/pci/drivers/xhci_hcd
+węzeł DT:   /sys/devices/platform/4010000000.pcie/pci0000:00/0000:00:02.0/of_node
+--- urządzenia USB ---
+1-1  0627:0001  QEMU USB Keyboard
+2-2  46f4:0001  QEMU USB HARDDRIVE
+--- interfejsy USB i ich sterowniki ---
+1-0:1.0  sterownik=hub/sys/bus/usb/drivers/hub
+1-1:1.0  sterownik=usbhid/sys/bus/usb/drivers/usbhid
+2-0:1.0  sterownik=hub/sys/bus/usb/drivers/hub
+2-2:1.0  sterownik=usb-storage/sys/bus/usb/drivers/usb-storage
+[ OK ] klawiatura USB zarejestrowana jako urządzenie wejściowe
+pendrive USB: /dev/sda
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+sda    8:0    0  64M  0 disk 
+[ OK ] zapis i odczyt 1 MB na pendrive USB (sumy się zgadzają)
+
+================ 9. Urządzenia platformowe bez sterownika ================
+bez sterownika: 9020000.fw-cfg
+bez sterownika: a000000.virtio_mmio
+bez sterownika: a000200.virtio_mmio
+bez sterownika: a000400.virtio_mmio
+bez sterownika: a000600.virtio_mmio
+bez sterownika: a000800.virtio_mmio
+bez sterownika: a000a00.virtio_mmio
+bez sterownika: a000c00.virtio_mmio
+bez sterownika: a000e00.virtio_mmio
+bez sterownika: a001000.virtio_mmio
+bez sterownika: a001200.virtio_mmio
+bez sterownika: a001400.virtio_mmio
+bez sterownika: a001600.virtio_mmio
+bez sterownika: a001800.virtio_mmio
+bez sterownika: a001a00.virtio_mmio
+bez sterownika: a001c00.virtio_mmio
+bez sterownika: a001e00.virtio_mmio
+bez sterownika: a002000.virtio_mmio
+bez sterownika: a002200.virtio_mmio
+bez sterownika: a002400.virtio_mmio
+bez sterownika: a002600.virtio_mmio
+bez sterownika: a002800.virtio_mmio
+bez sterownika: a002a00.virtio_mmio
+bez sterownika: a002c00.virtio_mmio
+bez sterownika: a002e00.virtio_mmio
+bez sterownika: a003000.virtio_mmio
+bez sterownika: a003200.virtio_mmio
+bez sterownika: a003400.virtio_mmio
+bez sterownika: a003600.virtio_mmio
+bez sterownika: a003800.virtio_mmio
+bez sterownika: a003a00.virtio_mmio
+bez sterownika: a003c00.virtio_mmio
+bez sterownika: a003e00.virtio_mmio
+bez sterownika: platform-bus@c000000
+bez sterownika: psci-cpuidle
+bez sterownika: timer
+
+================ Nieobecne na płytce QEMU virt (wymagają Raspberry Pi 5) ================
+WiFi 2.4/5 GHz, I2C, SPI, audio, HDMI

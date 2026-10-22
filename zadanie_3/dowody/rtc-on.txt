@@ -1,0 +1,13 @@
+cat: /proc/device-tree/pl031@9010000/status: No such file or directory
+
+== AMBA ==
+9000000.pl011
+9010000.pl031
+9030000.pl061
+== RTC ==
+rtc0
+lrwxrwxrwx 1 root root       4 Oct 22 17:41 /dev/rtc -> rtc0
+crw-rw---- 1 root clock 250, 0 Oct 22 17:41 /dev/rtc0
+== timedatectl ==
+                 RTC time: Thu 2026-10-22 15:44:55
+          RTC in local TZ: no
