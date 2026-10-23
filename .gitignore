@@ -1,3 +1,5 @@
 *.img
 *.img.gz
 *.dtb
+*.key
+*.pem
