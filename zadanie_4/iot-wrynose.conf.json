@@ -1,0 +1,83 @@
+{
+    "version": "1.0",
+    "description": "Projekt IoT: obraz z TPM, OP-TEE i PKCS#11 (Yocto 6.0 Wrynose)",
+    "sources": {
+        "bitbake": {
+            "git-remote": { "uri": "https://git.openembedded.org/bitbake",
+                            "branch": "2.18", "rev": "2.18" }
+        },
+        "openembedded-core": {
+            "git-remote": { "uri": "https://git.openembedded.org/openembedded-core",
+                            "branch": "wrynose", "rev": "wrynose" }
+        },
+        "meta-yocto": {
+            "git-remote": { "uri": "https://git.yoctoproject.org/meta-yocto",
+                            "branch": "wrynose", "rev": "wrynose" }
+        },
+        "meta-openembedded": {
+            "git-remote": { "uri": "https://git.openembedded.org/meta-openembedded",
+                            "branch": "wrynose", "rev": "wrynose" }
+        },
+        "meta-arm": {
+            "git-remote": { "uri": "https://git.yoctoproject.org/meta-arm",
+                            "branch": "wrynose", "rev": "wrynose" }
+        },
+        "meta-security": {
+            "git-remote": { "uri": "https://git.yoctoproject.org/meta-security",
+                            "branch": "wrynose", "rev": "wrynose" }
+        },
+        "meta-raspberrypi": {
+            "git-remote": { "uri": "https://github.com/agherzan/meta-raspberrypi",
+                            "branch": "wrynose", "rev": "wrynose" }
+        }
+    },
+    "bitbake-setup": {
+        "configurations": [
+        {
+            "bb-layers": [
+                "openembedded-core/meta",
+                "meta-yocto/meta-poky",
+                "meta-openembedded/meta-oe",
+                "meta-openembedded/meta-python",
+                "meta-openembedded/meta-networking",
+                "meta-openembedded/meta-perl",
+                "meta-arm/meta-arm-toolchain",
+                "meta-arm/meta-arm",
+                "meta-security",
+                "meta-security/meta-tpm",
+                "meta-raspberrypi"
+            ],
+            "bb-layers-file-relative": [
+                "meta-iot-bsp",
+                "meta-iot-distro",
+                "meta-iot-apps"
+            ],
+            "oe-fragments": [
+                "distro/iot",
+                "core/yocto/sstate-mirror-cdn"
+            ],
+            "oe-fragments-one-of": {
+                "machine": {
+                    "description": "Docelowy sprzęt",
+                    "options": [
+                        { "name": "machine/qemuarm64",    "description": "Wirtualna płytka ARM64 (QEMU)" },
+                        { "name": "machine/raspberrypi5", "description": "Raspberry Pi 5" }
+                    ]
+                }
+            },
+            "setup-dir-name": "iot-$machine",
+            "configurations": [
+            {
+                "name": "iot-dev",
+                "description": "Wersja deweloperska: logowanie roota bez hasła",
+                "oe-fragments": ["core/yocto/root-login-with-empty-password"]
+            },
+            {
+                "name": "iot",
+                "description": "Wersja docelowa: bez logowania roota bez hasła"
+            }
+            ]
+        }
+        ]
+    }
+}
