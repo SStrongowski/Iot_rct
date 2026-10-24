@@ -18,4 +18,4 @@ IMAGE_INSTALL:append = " \
 
 # nieskompresowany ext4 dla runqemu/QEMU (zapis zmian między startami)
 IMAGE_FSTYPES:append = " ext4"
-QB_DEFAULT_FSTYPE = "ext4"
+#QB_DEFAULT_FSTYPE = "ext4"

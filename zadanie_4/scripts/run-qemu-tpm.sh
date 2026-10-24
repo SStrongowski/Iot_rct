@@ -3,6 +3,7 @@
 # Stan TPM w TPM_DIR przetrwa restart płytki (jak prawdziwy układ).
 set -eo pipefail
 
+FSTYPE="${FSTYPE:-}"
 SETUP_DIR="${SETUP_DIR:-$HOME/yocto/bitbake-builds/iot-qemuarm64}"
 TPM_DIR="${TPM_DIR:-$HOME/yocto/swtpm-state}"
 mkdir -p "$TPM_DIR"
@@ -23,7 +24,7 @@ sleep 1
 source "$SETUP_DIR/build/init-build-env" > /dev/null
 
 # urządzenie TPM na płytce: backend "emulator" (swtpm) + interfejs TIS
-runqemu iot-image nographic slirp qemuparams="\
+runqemu iot-image $FSTYPE nographic slirp qemuparams="\
 -chardev socket,id=chrtpm,path=$TPM_DIR/swtpm-sock \
 -tpmdev emulator,id=tpm0,chardev=chrtpm \
 -device tpm-tis-device,tpmdev=tpm0"
