@@ -1,0 +1,7 @@
+# Na podstawie meta-arm/wic/qemu-efi-disk.wks.in: bez swap i ip=dhcp, z jawną konsolą.
+# Dysk z tablicą GPT:
+#  1. partycja EFI (ESP): systemd-boot jako EFI/BOOT/bootaa64.efi + kernel
+#  2. system plików root (ext4)
+part /boot --source bootimg-efi --sourceparams="loader=systemd-boot" --label boot --active --align 1024 --use-uuid
+part /     --source rootfs --fstype=ext4 --label root --align 1024 --use-uuid
+bootloader --ptable gpt --timeout=3 --append="console=ttyAMA0 rootwait"

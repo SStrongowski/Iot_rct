@@ -58,7 +58,8 @@
                     "description": "Docelowy sprzęt",
                     "options": [
                         { "name": "machine/qemuarm64",    "description": "Wirtualna płytka ARM64 (QEMU)" },
-			{ "name": "machine/qemuarm64-secureboot", "description": "QEMU ARM64 z TF-A, OP-TEE i U-Boot" },
+			#{ "name": "machine/qemuarm64-secureboot", "description": "QEMU ARM64 z TF-A, OP-TEE i U-Boot" },
+			{ "name": "machine/iot-qemuarm64-secureboot", "description": "QEMU ARM64: TF-A, OP-TEE, U-Boot, start UEFI (measured boot)" },
                         { "name": "machine/raspberrypi5", "description": "Raspberry Pi 5" }
                     ]
                 }
