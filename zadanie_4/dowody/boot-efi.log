@@ -1,0 +1,783 @@
+Script started on 2026-10-26 19:57:56+01:00 [COMMAND="/home/work/Iot_rct/zadanie_4/scripts/run-qemu-tpm.sh" TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="271" LINES="72"]
+runqemu - INFO - Running bitbake -e  iot-image...
+runqemu - INFO - Continuing with the following parameters:
+KERNEL: [/home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/deploy/images/iot-qemuarm64-secureboot/Image]
+BIOS: [/home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/deploy/images/iot-qemuarm64-secureboot/flash.bin]
+MACHINE: [iot-qemuarm64-secureboot]
+FSTYPE: [wic.qcow2]
+ROOTFS: [/home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/deploy/images/iot-qemuarm64-secureboot/iot-image-iot-qemuarm64-secureboot.rootfs.wic.qcow2]
+Disabled. Changes on rootfs will be kept after QEMU shutdown.
+CONFFILE: [/home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/deploy/images/iot-qemuarm64-secureboot/iot-image-iot-qemuarm64-secureboot.rootfs.qemuboot.conf]
+
+runqemu - INFO - Network configuration: ip=dhcp
+runqemu - INFO - Port forward: hostfwd=tcp:127.0.0.1:2222-:22 hostfwd=tcp:127.0.0.1:2323-:23
+runqemu - INFO - Running /home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/work/x86_64-linux/qemu-helper-native/1.0/recipe-sysroot-native/usr/bin/qemu-system-aarch64 -device virtio-net-pci,netdev=net0,mac=52:54:00:12:35:02 -netdev user,id=net0,hostfwd=tcp:127.0.0.1:2222-:22,hostfwd=tcp:127.0.0.1:2323-:23,tftp=/home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/deploy/images/iot-qemuarm64-secureboot -object rng-random,filename=/dev/urandom,id=rng0 -device virtio-rng-pci,rng=rng0 -drive file=/home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/deploy/images/iot-qemuarm64-secureboot/iot-image-iot-qemuarm64-secureboot.rootfs.wic.qcow2,if=virtio,format=qcow2 -device qemu-xhci -device usb-tablet -device usb-kbd  -machine virt,secure=on,acpi=off -cpu cortex-a57 -smp 4 -m 1024  -chardev socket,id=chrtpm,path=/home/work/yocto/swtpm-secureboot/swtpm-sock -tpmdev emulator,id=tpm0,chardev=chrtpm -device tpm-tis-device,tpmdev=tpm0 -serial mon:stdio -serial null -nographic -device virtio-gpu-pci -bios /home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/deploy/images/iot-qemuarm64-secureboot/flash.bin -kernel /home/work/yocto/bitbake-builds/iot-qemuarm64-secureboot/build/tmp/deploy/images/iot-qemuarm64-secureboot/Image -append 'root=/dev/vda2 rw  mem=1024M ip=dhcp console=ttyAMA0 console=hvc0 swiotlb=0 '
+
+runqemu - INFO - Host uptime: 13527.90
+
+NOTICE:  Booting Trusted Firmware
+NOTICE:  BL1: v2.14.1(release):lts-v2.14.1-dirty
+NOTICE:  BL1: Built : 15:05:24, Feb  6 2026
+NOTICE:  BL1: Booting BL2
+NOTICE:  BL2: v2.14.1(release):lts-v2.14.1-dirty
+NOTICE:  BL2: Built : 15:05:24, Feb  6 2026
+NOTICE:  BL1: Booting BL31
+NOTICE:  BL31: v2.14.1(release):lts-v2.14.1-dirty
+NOTICE:  BL31: Built : 15:05:24, Feb  6 2026
+
+
+U-Boot 2026.01 (Jan 05 2026 - 20:49:22 +0000)
+
+DRAM:  1 GiB
+using memory 0x7e65e000-0x7f69e000 for malloc()
+Core:  52 devices, 15 uclasses, devicetree: board
+Flash: 32 MiB
+Loading Environment from Flash... *** Warning - bad CRC, using default environment
+
+In:    serial,usbkbd
+Out:   serial,vidconsole
+Err:   serial,vidconsole
+Starting the controller
+USB XHCI 1.00
+Bus xhci_pci: 3 USB Device(s) found
+Net:   eth0: virtio-net#32
+[?25h
+Hit any key to stop autoboot:  2 Hit any key to stop autoboot: 1[KHit any key to stop autoboot: 0[K
+Scanning for bootflows in all bootdevs
+Seq  Method       State   Uclass    Part  Name                      Filename
+---  -----------  ------  --------  ----  ------------------------  ----------------
+Scanning global bootmeth 'efi_mgr':
+7[r[999;999H[6n8Cannot persist EFI variables without system partition
+  0  efi_mgr      ready   (none)       0  <NULL>                    
+** Booting bootflow '<NULL>' with efi_mgr
+Booting: Label: virtio 0 Device path: /VenHw(e61d73b9-a384-4acc-aeab-82e828f3628b,0000000000000000)/VenHw(e61d73b9-a384-4acc-aeab-82e828f3628b,5800000000000000)/VenHw(e61d73b9-a384-4acc-aeab-82e828f3628b,8900000023000000)/VenHw(e61d73b9-a384-4acc-aeab-82e828f3628b,1700890000000000)
+[?25l [1;37;40m[0;37;40m[2J[1;1H[36;131H[1;30;47m[0;30;47m   boot   [38;1H[1;37;40m[0;37;40m                                                                                                                                  Boot in 3s.                                                                                                                                 [37;128H[1;37;40m[0;37;40m─────────────────[38;1H[1;37;40m[0;37;40m                                                                                                                                  Boot in 2s.                                                                                                                                 [37;128H[1;37;40m[0;37;40m─────────────────[38;1H[1;37;40m[0;37;40m                                                                                                                                  Boot in 1s.                                                                                                                                 [37;128H[1;37;40m[0;37;40m─────────────────[1;37;40m[0;37;40m[2J[1;1H[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd070]
+[    0.000000] Linux version 6.18.52-yocto-standard (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 15.3.0, GNU ld (GNU Binutils) 2.46.1.20260718) #1 SMP PREEMPT Wed Sep 23 03:10:06 UTC 2026
+[    0.000000] Machine model: linux,dummy-virt
+[    0.000000] efi: EFI v2.11 by Das U-Boot
+[    0.000000] efi: TPMFinalLog=0x7d60d040 RTPROP=0x7d60b040 SMBIOS 3.0=0x7e66f000 TPMEventLog=0x7d5ea040 RNG=0x7d5e9040 MEMRESERVE=0x7d5e8040 
+[    0.000000] random: crng init done
+[    0.000000] OF: reserved mem: 0x000000000e100000..0x000000000effffff (15360 KiB) nomap non-reusable optee_core@e100000
+[    0.000000] OF: reserved mem: 0x0000000042000000..0x00000000421fffff (2048 KiB) nomap non-reusable optee_shm@42000000
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x000000000e100000-0x000000007fffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x000000000e100000-0x000000000effffff]
+[    0.000000]   node   0: [mem 0x0000000040000000-0x0000000041ffffff]
+[    0.000000]   node   0: [mem 0x0000000042000000-0x00000000421fffff]
+[    0.000000]   node   0: [mem 0x0000000042200000-0x000000007d3fffff]
+[    0.000000]   node   0: [mem 0x000000007d400000-0x000000007d400fff]
+[    0.000000]   node   0: [mem 0x000000007d401000-0x000000007d60afff]
+[    0.000000]   node   0: [mem 0x000000007d60b000-0x000000007d60bfff]
+[    0.000000]   node   0: [mem 0x000000007d60c000-0x000000007d60cfff]
+[    0.000000]   node   0: [mem 0x000000007d60d000-0x000000007d61dfff]
+[    0.000000]   node   0: [mem 0x000000007d61e000-0x000000007d62ffff]
+[    0.000000]   node   0: [mem 0x000000007d630000-0x000000007d651fff]
+[    0.000000]   node   0: [mem 0x000000007d652000-0x000000007e66efff]
+[    0.000000]   node   0: [mem 0x000000007e66f000-0x000000007e66ffff]
+[    0.000000]   node   0: [mem 0x000000007e670000-0x000000007f68ffff]
+[    0.000000]   node   0: [mem 0x000000007f690000-0x000000007f69ffff]
+[    0.000000]   node   0: [mem 0x000000007f6a0000-0x000000007fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x000000000e100000-0x000000007fffffff]
+[    0.000000] On node 0, zone DMA: 24832 pages in unavailable ranges
+[    0.000000] On node 0, zone DMA: 4096 pages in unavailable ranges
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.5
+[    0.000000] percpu: Embedded 28 pages/cpu s77592 r8192 d28904 u114688
+[    0.000000] Detected PIPT I-cache on CPU0
+[    0.000000] CPU features: detected: Spectre-v2
+[    0.000000] CPU features: detected: Spectre-BHB
+[    0.000000] CPU features: detected: ARM erratum 1742098
+[    0.000000] CPU features: detected: ARM erratum 832075
+[    0.000000] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Kernel command line: LABEL=Boot root=PARTUUID=f2cf3171-e63b-4f6f-8c34-7e9086fe84a4 console=ttyAMA0 rootwait
+[    0.000000] Unknown kernel command line parameters "LABEL=Boot", will be passed to user space.
+[    0.000000] printk: log buffer data + meta data: 131072 + 458752 = 589824 bytes
+[    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 1MB
+[    0.000000] software IO TLB: area num 4.
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size roundup to 2MB
+[    0.000000] software IO TLB: mapped [mem 0x000000007f7f3000-0x000000007f9f3000] (2MB)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 265984
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] ftrace: allocating 46966 entries in 184 pages
+[    0.000000] ftrace: allocated 184 pages with 4 groups
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=512 to nr_cpu_ids=4.
+[    0.000000] 	Trampoline variant of Tasks RCU enabled.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] RCU Tasks: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] RCU Tasks Rude: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] RCU Tasks Trace: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GICv2m: range[mem 0x08020000-0x08020fff], SPI[80:143]
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.000000] arch_timer: cp15 timer running at 62.50MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x1cd42e208c, max_idle_ns: 881590405314 ns
+[    0.000066] sched_clock: 57 bits at 63MHz, resolution 16ns, wraps every 4398046511096ns
+[    0.024800] kfence: initialized - using 2097152 bytes for 255 objects at 0x(____ptrval____)-0x(____ptrval____)
+[    0.032877] Console: colour dummy device 80x25
+[    0.034685] Calibrating delay loop (skipped), value calculated using timer frequency.. 125.00 BogoMIPS (lpj=250000)
+[    0.034910] pid_max: default: 32768 minimum: 301
+[    0.037681] LSM: initializing lsm=capability,landlock
+[    0.042493] landlock: Up and running.
+[    0.046635] Mount-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.046676] Mountpoint-cache hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.092689] rcu: Hierarchical SRCU implementation.
+[    0.092731] rcu: 	Max phase no-delay instances is 1000.
+[    0.096900] Remapping and enabling EFI services.
+[    0.100148] smp: Bringing up secondary CPUs ...
+[    0.106036] Detected PIPT I-cache on CPU1
+[    0.107160] CPU1: Booted secondary processor 0x0000000001 [0x411fd070]
+[    0.114021] Detected PIPT I-cache on CPU2
+[    0.114321] CPU2: Booted secondary processor 0x0000000002 [0x411fd070]
+[    0.116648] Detected PIPT I-cache on CPU3
+[    0.116874] CPU3: Booted secondary processor 0x0000000003 [0x411fd070]
+[    0.117394] smp: Brought up 1 node, 4 CPUs
+[    0.117430] SMP: Total of 4 processors activated.
+[    0.117455] CPU: All CPU(s) started at EL1
+[    0.117528] CPU features: detected: 32-bit EL0 Support
+[    0.117601] CPU features: detected: CRC32 instructions
+[    0.118183] CPU features: detected: PMUv3
+[    0.128737] alternatives: applying system-wide alternatives
+[    0.158830] Memory: 988712K/1063936K available (15488K kernel code, 2198K rwdata, 3976K rodata, 1920K init, 688K bss, 69240K reserved, 0K cma-reserved)
+[    0.188452] devtmpfs: initialized
+[    0.212549] posixtimers hash table entries: 2048 (order: 3, 32768 bytes, linear)
+[    0.212967] futex hash table entries: 1024 (65536 bytes on 1 NUMA nodes, total 64 KiB, linear).
+[    0.214110] 26640 pages in range for non-PLT usage
+[    0.214159] 518160 pages in range for PLT usage
+[    0.221486] SMBIOS 3.7.0 present.
+[    0.221700] DMI: linux dummy-virt/dummy-virt, BIOS 2026.01 01/01/2026
+[    0.221763] DMI: Memory slots populated: 0/0
+[    0.268806] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.274286] DMA: preallocated 128 KiB GFP_KERNEL pool for atomic allocations
+[    0.274609] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.274737] DMA: preallocated 128 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.278471] thermal_sys: Registered thermal governor 'step_wise'
+[    0.280391] cpuidle: using governor ladder
+[    0.281471] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.282564] ASID allocator initialised with 65536 entries
+[    0.283186] Serial: AMBA PL011 UART driver
+[    0.318765] 9000000.pl011: ttyAMA0 at MMIO 0x9000000 (irq = 13, base_baud = 0) is a PL011 rev1
+[    0.321474] printk: console [ttyAMA0] enabled
+[    0.448121] raid6: neonx8   gen()  3633 MB/s
+[    0.517254] raid6: neonx4   gen()  2931 MB/s
+[    0.586231] raid6: neonx2   gen()  1986 MB/s
+[    0.655844] raid6: neonx1   gen()  1183 MB/s
+[    0.725078] raid6: int64x8  gen()  1420 MB/s
+[    0.794186] raid6: int64x4  gen()  2240 MB/s
+[    0.863505] raid6: int64x2  gen()  1931 MB/s
+[    0.933171] raid6: int64x1  gen()  1403 MB/s
+[    0.933320] raid6: using algorithm neonx8 gen() 3633 MB/s
+[    1.002428] raid6: .... xor() 944 MB/s, rmw enabled
+[    1.003036] raid6: using neon recovery algorithm
+[    1.006092] ACPI: Interpreter disabled.
+[    1.007385] iommu: Default domain type: Translated
+[    1.007501] iommu: DMA domain TLB invalidation policy: strict mode
+[    1.011246] SCSI subsystem initialized
+[    1.012791] usbcore: registered new interface driver usbfs
+[    1.013266] usbcore: registered new interface driver hub
+[    1.013466] usbcore: registered new device driver usb
+[    1.014521] pps_core: LinuxPPS API ver. 1 registered
+[    1.014540] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.014700] PTP clock support registered
+[    1.019733] efivars: Registered efivars operations
+[    1.035556] vgaarb: loaded
+[    1.037173] clocksource: Switched to clocksource arch_sys_counter
+[    1.290560] pnp: PnP ACPI: disabled
+[    1.324657] NET: Registered PF_INET protocol family
+[    1.326779] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    1.335947] tcp_listen_portaddr_hash hash table entries: 512 (order: 1, 8192 bytes, linear)
+[    1.336377] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.336480] TCP established hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    1.337180] TCP bind hash table entries: 8192 (order: 6, 262144 bytes, linear)
+[    1.337827] TCP: Hash tables configured (established 8192 bind 8192)
+[    1.339057] UDP hash table entries: 512 (order: 3, 32768 bytes, linear)
+[    1.339319] UDP-Lite hash table entries: 512 (order: 3, 32768 bytes, linear)
+[    1.342139] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.347096] RPC: Registered named UNIX socket transport module.
+[    1.347209] RPC: Registered udp transport module.
+[    1.347302] RPC: Registered tcp transport module.
+[    1.347333] RPC: Registered tcp-with-tls transport module.
+[    1.347380] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.347945] PCI: CLS 0 bytes, default 64
+[    1.359039] workingset: timestamp_bits=46 max_order=18 bucket_order=0
+[    1.365701] NFS: Registering the id_resolver key type
+[    1.366156] Key type id_resolver registered
+[    1.366311] Key type id_legacy registered
+[    1.374894] Key type cifs.idmap registered
+[    1.440483] xor: measuring software checksum speed
+[    1.442775]    8regs           :  1572 MB/sec
+[    1.443744]    32regs          :  3750 MB/sec
+[    1.445450]    arm64_neon      :  2054 MB/sec
+[    1.445565] xor: using function: 32regs (3750 MB/sec)
+[    1.446736] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+[    1.447262] io scheduler mq-deadline registered
+[    1.447469] io scheduler kyber registered
+[    1.454253] pci-host-generic 4010000000.pcie: host bridge /pcie@10000000 ranges:
+[    1.455335] pci-host-generic 4010000000.pcie:       IO 0x003eff0000..0x003effffff -> 0x0000000000
+[    1.456112] pci-host-generic 4010000000.pcie:      MEM 0x0010000000..0x003efeffff -> 0x0010000000
+[    1.456323] pci-host-generic 4010000000.pcie:      MEM 0x8000000000..0xffffffffff -> 0x8000000000
+[    1.458188] pci-host-generic 4010000000.pcie: Memory resource size exceeds max for 32 bits
+[    1.459308] pci-host-generic 4010000000.pcie: ECAM at [mem 0x4010000000-0x401fffffff] for [bus 00-ff]
+[    1.462229] pci-host-generic 4010000000.pcie: PCI host bridge to bus 0000:00
+[    1.463063] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    1.463309] pci_bus 0000:00: root bus resource [io  0x0000-0xffff]
+[    1.463389] pci_bus 0000:00: root bus resource [mem 0x10000000-0x3efeffff]
+[    1.463527] pci_bus 0000:00: root bus resource [mem 0x8000000000-0xffffffffff]
+[    1.466824] pci 0000:00:00.0: [1b36:0008] type 00 class 0x060000 conventional PCI endpoint
+[    1.475604] pci 0000:00:01.0: [1af4:1000] type 00 class 0x020000 conventional PCI endpoint
+[    1.482108] pci 0000:00:01.0: BAR 0 [io  0x1000-0x101f]
+[    1.482264] pci 0000:00:01.0: BAR 1 [mem 0x10000000-0x10000fff]
+[    1.482484] pci 0000:00:01.0: BAR 4 [mem 0x10004000-0x10007fff 64bit pref]
+[    1.482814] pci 0000:00:01.0: ROM [mem 0x10040000-0x1007ffff pref]
+[    1.486260] pci 0000:00:02.0: [1af4:1005] type 00 class 0x00ff00 conventional PCI endpoint
+[    1.490422] pci 0000:00:02.0: BAR 0 [io  0x1020-0x103f]
+[    1.490550] pci 0000:00:02.0: BAR 1 [mem 0x10080000-0x10080fff]
+[    1.490697] pci 0000:00:02.0: BAR 4 [mem 0x10084000-0x10087fff 64bit pref]
+[    1.495003] pci 0000:00:03.0: [1b36:000d] type 00 class 0x0c0330 PCIe Root Complex Integrated Endpoint
+[    1.496684] pci 0000:00:03.0: BAR 0 [mem 0x10088000-0x1008bfff 64bit]
+[    1.498694] pci 0000:00:03.0: enabling Extended Tags
+[    1.504200] pci 0000:00:04.0: [1af4:1050] type 00 class 0x038000 conventional PCI endpoint
+[    1.506506] pci 0000:00:04.0: BAR 1 [mem 0x1008c000-0x1008cfff]
+[    1.506647] pci 0000:00:04.0: BAR 4 [mem 0x10090000-0x10093fff 64bit pref]
+[    1.510708] pci 0000:00:05.0: [1af4:1001] type 00 class 0x010000 conventional PCI endpoint
+[    1.515033] pci 0000:00:05.0: BAR 0 [io  0x1080-0x10ff]
+[    1.515399] pci 0000:00:05.0: BAR 1 [mem 0x10094000-0x10094fff]
+[    1.515956] pci 0000:00:05.0: BAR 4 [mem 0x10098000-0x1009bfff 64bit pref]
+[    1.523979] pci 0000:00:01.0: ROM [mem 0x10000000-0x1003ffff pref]: assigned
+[    1.524546] pci 0000:00:01.0: BAR 4 [mem 0x8000000000-0x8000003fff 64bit pref]: assigned
+[    1.527688] pci 0000:00:02.0: BAR 4 [mem 0x8000004000-0x8000007fff 64bit pref]: assigned
+[    1.529333] pci 0000:00:03.0: BAR 0 [mem 0x8000008000-0x800000bfff 64bit]: assigned
+[    1.530840] pci 0000:00:04.0: BAR 4 [mem 0x800000c000-0x800000ffff 64bit pref]: assigned
+[    1.532700] pci 0000:00:05.0: BAR 4 [mem 0x8000010000-0x8000013fff 64bit pref]: assigned
+[    1.538463] pci 0000:00:01.0: BAR 1 [mem 0x10040000-0x10040fff]: assigned
+[    1.540087] pci 0000:00:02.0: BAR 1 [mem 0x10041000-0x10041fff]: assigned
+[    1.540855] pci 0000:00:04.0: BAR 1 [mem 0x10042000-0x10042fff]: assigned
+[    1.542258] pci 0000:00:05.0: BAR 1 [mem 0x10043000-0x10043fff]: assigned
+[    1.543042] pci 0000:00:05.0: BAR 0 [io  0x1000-0x107f]: assigned
+[    1.543703] pci 0000:00:01.0: BAR 0 [io  0x1080-0x109f]: assigned
+[    1.544341] pci 0000:00:02.0: BAR 0 [io  0x10a0-0x10bf]: assigned
+[    1.547318] pci_bus 0000:00: resource 4 [io  0x0000-0xffff]
+[    1.547560] pci_bus 0000:00: resource 5 [mem 0x10000000-0x3efeffff]
+[    1.547720] pci_bus 0000:00: resource 6 [mem 0x8000000000-0xffffffffff]
+[    1.599554] tpm_tis c000000.tpm_tis: 2.0 TPM (device-id 0x1, rev-id 1)
+[    1.613413] [drm] pci: virtio-gpu-pci detected at 0000:00:04.0
+[    1.614361] [drm] features: -virgl +edid -resource_blob -host_visible
+[    1.614455] [drm] features: -context_init
+[    1.616832] [drm] number of scanouts: 1
+[    1.617753] [drm] number of cap sets: 0
+[    1.630732] [drm] Initialized virtio_gpu 0.1.0 for 0000:00:04.0 on minor 0
+[    1.692836] Console: switching to colour frame buffer device 160x50
+[    1.700673] virtio-pci 0000:00:04.0: [drm] fb0: virtio_gpudrmfb frame buffer device
+[    1.738517] brd: module loaded
+[    1.739537] virtio_blk virtio3: 4/0/0 default/read/poll queues
+[    1.750314] virtio_blk virtio3: [vda] 1039176 512-byte logical blocks (532 MB/507 MiB)
+[    1.850186]  vda: vda1 vda2
+[    1.863776] xhci_hcd 0000:00:03.0: xHCI Host Controller
+[    1.864568] xhci_hcd 0000:00:03.0: new USB bus registered, assigned bus number 1
+[    1.871243] xhci_hcd 0000:00:03.0: hcc params 0x00087001 hci version 0x100 quirks 0x0000000000000010
+[    1.875988] xhci_hcd 0000:00:03.0: xHCI Host Controller
+[    1.876078] xhci_hcd 0000:00:03.0: new USB bus registered, assigned bus number 2
+[    1.876229] xhci_hcd 0000:00:03.0: Host supports USB 3.0 SuperSpeed
+[    1.887819] hub 1-0:1.0: USB hub found
+[    1.888716] hub 1-0:1.0: 4 ports detected
+[    1.894645] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    1.897615] hub 2-0:1.0: USB hub found
+[    1.898669] hub 2-0:1.0: 4 ports detected
+[    1.909842] rtc-pl031 9010000.pl031: registered as rtc0
+[    1.911357] rtc-pl031 9010000.pl031: setting system clock to 2026-10-26T18:58:49 UTC (1793041129)
+[    1.916462] device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev
+[    1.920796] SMCCC: SOC_ID: ARCH_SOC_ID not implemented, skipping ....
+[    1.923622] usbcore: registered new interface driver usbhid
+[    1.923704] usbhid: USB HID core driver
+[    1.928558] hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 (0,8000003f) counters available
+[    1.930388] optee: probing for conduit method.
+[    1.931926] optee: revision 4.9 (c2b0684fcd899299)
+[    1.936314] optee: Asynchronous notifications enabled
+[    1.940196] optee: dynamic shared memory is enabled
+[    1.953766] optee: initialized driver
+[    1.954945] u32 classifier
+[    1.955087]     input device check on
+[    1.955226]     Actions configured
+[    1.959362] NET: Registered PF_INET6 protocol family
+[    1.968619] Segment Routing with IPv6
+[    1.968893] In-situ OAM (IOAM) with IPv6
+[    1.972092] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.976010] NET: Registered PF_PACKET protocol family
+[    1.977541] Bridge firewalling registered
+[    1.978720] l2tp_core: L2TP core driver, V2.0
+[    1.978919] Key type dns_resolver registered
+[    1.980474] NET: Registered PF_VSOCK protocol family
+[    2.007237] registered taskstats version 1
+[    2.038813] Key type .fscrypt registered
+[    2.038915] Key type fscrypt-provisioning registered
+[    2.043038] Btrfs loaded, zoned=no, fsverity=no
+[    2.057283] Key type encrypted registered
+[    2.059898] netconsole: network logging started
+[    2.062569] clk: Disabling unused clocks
+[    2.063242] PM: genpd: Disabling unused power domains
+[    2.070441] md: Waiting for all devices to be available before autodetect
+[    2.070563] md: If you don't use raid, use raid=noautodetect
+[    2.070787] md: Autodetecting RAID arrays.
+[    2.070918] md: autorun ...
+[    2.071054] md: ... autorun DONE.
+[    2.141950] usb 1-1: new high-speed USB device number 2 using xhci_hcd
+[    2.230782] EXT4-fs (vda2): mounted filesystem 58e92ee7-782c-47e8-8b07-b680be581d2f ro with ordered data mode. Quota mode: disabled.
+[    2.231405] VFS: Mounted root (ext4 filesystem) readonly on device 253:2.
+[    2.236015] devtmpfs: mounted
+[    2.296416] input: QEMU QEMU USB Tablet as /devices/platform/4010000000.pcie/pci0000:00/0000:00:03.0/usb1/1-1/1-1:1.0/0003:0627:0001.0001/input/input0
+[    2.300411] hid-generic 0003:0627:0001.0001: input: USB HID v0.01 Mouse [QEMU QEMU USB Tablet] on usb-0000:00:03.0-1/input0
+[    2.310876] Freeing unused kernel memory: 1920K
+[    2.342494] Run /sbin/init as init process
+[    2.421441] usb 1-2: new high-speed USB device number 3 using xhci_hcd
+[    2.565330] input: QEMU QEMU USB Keyboard as /devices/platform/4010000000.pcie/pci0000:00/0000:00:03.0/usb1/1-2/1-2:1.0/0003:0627:0001.0002/input/input1
+[    2.643504] hid-generic 0003:0627:0001.0002: input: USB HID v1.11 Keyboard [QEMU QEMU USB Keyboard] on usb-0000:00:03.0-2/input0
+P+q6E616D65\[6n[32766;32766H[6n[72;11H[!p]104\[0m[?7h[1G[0J[    3.675679] systemd[1]: systemd 259.5 running in system mode (+PAM -AUDIT -SELINUX -APPARMOR +IMA +IPE -SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID -CURL -ELFUTILS -FIDO2 -IDN2 -IDN +KMOD +LIBCRYPTSETUP +LIBCRYPTSETUP_PLUGINS +LIBFDISK -PCRE2 -PWQUALITY -P11KIT -QRENCODE +TPM2 -BZIP2 -LZ4 -XZ -ZLIB +ZSTD -BPF_FRAMEWORK -BTF +XKBCOMMON +UTMP -SYSVINIT -LIBARCHIVE)
+[    3.676511] systemd[1]: Detected virtualization qemu.
+[    3.680655] systemd[1]: Detected architecture arm64.
+
+[0;1;39mWelcome to [0m[1mIoT Secure Linux 0.1 (wrynose)[0m[0;1;39m![0m
+
+[    3.724337] systemd[1]: Initializing machine ID from random generator.
+[    3.731018] systemd[1]: Installed transient '/etc/machine-id' file.
+[    3.735274] systemd[1]: Hostname set to <iot-qemuarm64-secureboot>.
+]3008;start=3bd6d5f1b3b941e49ce1251747336c13;user=root;hostname=iot-qemuarm64-secureboot;machineid=474029a5bb494f1f83b157ae7170a9d3;bootid=5066e889b0e8443c8127448957822edc;pid=1;pidfdid=2;comm=systemd;type=boot\[    5.546113] systemd[1]: Queued start job for default target Multi-User System.
+[    5.619830] systemd[1]: Created slice Slice /system/getty.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[    5.629751] systemd[1]: Created slice Slice /system/modprobe.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[    5.635505] systemd[1]: Created slice Slice /system/serial-getty.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.[    5.640854] systemd[1]: Created slice User and Session Slice.
+
+[    5.646134] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[    5.648987] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[    5.652243] systemd[1]: Expecting device /dev/disk/by-uuid/E595-FB9D...
+         E…[0;1;39m[0m.
+[    5.655832] systemd[1]: Expecting device /dev/hvc0...
+         E…[0;1;39m[0m.
+[    5.658221] systemd[1]: Expecting device /dev/ttyAMA0...
+         E…[0;1;39m[0m.
+[    5.660235] systemd[1]: Reached target Local Encrypted Volumes.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.663028] systemd[1]: Reached target Local Integrity Protected Volumes.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.665465] systemd[1]: Reached target Path Units.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.667257] systemd[1]: Reached target Remote Encrypted Volumes.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.670123] systemd[1]: Reached target Remote File Systems.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.671823] systemd[1]: Reached target Remote Integrity Protected Volumes.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.674639] systemd[1]: Reached target Remote Verity Protected Volumes.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.677816] systemd[1]: Reached target Slice Units.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.679763] systemd[1]: Reached target Swaps.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.682557] systemd[1]: Reached target Local Verity Protected Volumes.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.760198] systemd[1]: Listening on RPCbind Server Activation Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.764508] systemd[1]: Reached target RPC Port Mapper.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    5.770001] systemd[1]: Listening on Syslog Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.792327] systemd[1]: Listening on Query the User Interactively for a Password.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.808779] systemd[1]: Listening on Credential Encryption/Decryption.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.829449] systemd[1]: Listening on Factory Reset Management.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.834393] systemd[1]: Journal Audit Socket skipped, unmet condition check ConditionSecurity=audit
+[    5.837540] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.840256] systemd[1]: Listening on Journal Sockets.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.860602] systemd[1]: Listening on Console Output Muting Service Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.866609] systemd[1]: Listening on Network Management Resolve Hook Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.870987] systemd[1]: Listening on Network Management Varlink Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.875221] systemd[1]: Listening on Network Management Netlink Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.891651] systemd[1]: Listening on TPM PCR Measurements.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.907884] systemd[1]: Listening on Make TPM PCR Policy.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.930264] systemd[1]: Listening on Disk Repartitioning Service Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.933983] systemd[1]: Listening on Resolve Monitor Varlink Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.937419] systemd[1]: Listening on Resolve Service Varlink Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.942607] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.945631] systemd[1]: Listening on udev Kernel Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.948068] systemd[1]: Listening on udev Varlink Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.951523] systemd[1]: Listening on User Database Manager Socket.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[    5.956095] systemd[1]: Huge Pages File System skipped, unmet condition check ConditionPathExists=/sys/kernel/mm/hugepages
+[    5.988278] systemd[1]: Mounting POSIX Message Queue File System...
+         M…[0;1;39m[0m.
+[    6.011681] systemd[1]: Mounting Kernel Debug File System...
+         M…[0;1;39m[0m.
+[    6.044774] systemd[1]: Mounting Kernel Trace File System...
+         M…[0;1;39m[0m.
+[    6.054074] systemd[1]: tmp.mount: x-systemd.graceful-option=usrquota specified, but option is not available, suppressing.
+[    6.087684] systemd[1]: Mounting Temporary Directory /tmp...
+         M…[0;1;39m[0m.
+[    6.106555] systemd[1]: Create List of Static Device Nodes skipped, unmet condition check ConditionFileNotEmpty=/lib/modules/6.18.52-yocto-standard/modules.devname
+[    6.170339] systemd[1]: Starting Load Kernel Module configfs...
+         S…[0;1;39m[0m.
+[    6.174838] systemd[1]: Load Kernel Module drm skipped, unmet condition check ConditionKernelModuleLoaded=!drm
+[    6.209456] systemd[1]: Starting Load Kernel Module fuse...
+         S…[0;1;39m[0m.
+[    6.215923] systemd[1]: Clear SysFail Entry If The Boot Is Successful skipped, unmet condition check ConditionPathExists=/sys/firmware/efi/efivars/LoaderEntrySysFail-4a67b082-0a4c-41cf-b6c7-440b29bb8c4f
+[    6.231525] systemd[1]: Starting File System Check on Root Device...
+         S…[0;1;39m[0m.
+[    6.244100] systemd[1]: Clear Stale Hibernate Storage Info skipped, unmet condition check ConditionPathExists=/sys/firmware/efi/efivars/HibernateLocation-8cf2644b-4b0b-428f-9387-6d876050dc67
+[    6.413741] systemd[1]: Starting Journal Service...
+         S…[0;1;39m[0m.
+[    6.433509] systemd[1]: Load Kernel Modules skipped, no trigger condition checks were met.
+[    6.480412] systemd[1]: Starting Generate Network Units from Kernel Command Line...
+         S…[0;1;39m[0m.
+[    6.550683] systemd[1]: Starting TPM PCR Machine ID Measurement...
+         S…[0;1;39m[0m.
+[    6.591803] systemd[1]: Starting TPM NvPCR Product ID Measurement...
+         S…[0;1;39m[0m.
+[    6.673417] systemd[1]: Starting Apply Kernel Variables...
+         S…[0;1;39m[0m.
+[    6.733515] systemd[1]: Starting Create Static Device Nodes in /dev gracefully...
+         S…[0;1;39m[0m.
+[    6.857564] systemd[1]: Starting Early TPM SRK Setup...
+         S…[0;1;39m[0m.
+[    6.958730] systemd[1]: Starting Load udev Rules from Credentials...
+         S…[0;1;39m[0m.
+[    7.033777] systemd[1]: Starting Coldplug All udev Devices...
+         S…[0;1;39m[0m.
+[    7.364725] systemd[1]: Mounted POSIX Message Queue File System.
+[[0;32m  OK  [0m] M…[0;1;39m[0m.
+[    7.387875] systemd[1]: Mounted Kernel Debug File System.
+[[0;32m  OK  [0m] M…[0;1;39m[0m.
+[    7.426518] systemd[1]: Mounted Kernel Trace File System.
+[[0;32m  OK  [0m] M…[0;1;39m[0m.
+[    7.436030] systemd[1]: Mounted Temporary Directory /tmp.
+[[0;32m  OK  [0m] M…[0;1;39m[0m.
+[    7.458449] systemd[1]: modprobe@configfs.service: Deactivated successfully.
+[    7.468496] systemd-journald[118]: Collecting audit messages is disabled.
+[    7.477633] systemd[1]: Finished Load Kernel Module configfs.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.502017] systemd[1]: modprobe@fuse.service: Deactivated successfully.
+[    7.512378] systemd[1]: Finished Load Kernel Module fuse.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.546906] systemd[1]: Finished Generate Network Units from Kernel Command Line.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.569725] systemd[1]: Finished File System Check on Root Device.
+[    7.588029] systemd[1]: Finished TPM PCR Machine ID Measurement.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.599825] systemd[1]: Finished TPM NvPCR Product ID Measurement.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.611987] systemd[1]: Finished Apply Kernel Variables.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.634161] systemd[1]: Finished Load udev Rules from Credentials.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.646913] systemd[1]: Reached target Preparation for Network.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[    7.667090] systemd[1]: Starting Remount Root and Kernel File Systems...
+         S…[0;1;39m[0m.
+[    7.688400] systemd[1]: Finished Create Static Device Nodes in /dev gracefully.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.946861] EXT4-fs (vda2): re-mounted 58e92ee7-782c-47e8-8b07-b680be581d2f r/w.
+[    7.962651] systemd[1]: Finished Remount Root and Kernel File Systems.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    7.975806] systemd[1]: Rebuild Hardware Database skipped, no trigger condition checks were met.
+[    7.992431] systemd[1]: Starting Create System Users...
+         S…[0;1;39m[0m.
+[    8.114407] systemd[1]: Finished Early TPM SRK Setup.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[    8.131684] systemd[1]: Starting TPM SRK Setup...
+         S…[0;1;39m[0m.
+[    8.226988] systemd[1]: FUSE Control File System skipped, unmet condition check ConditionPathExists=/sys/fs/fuse/connections
+[    8.232645] systemd[1]: Kernel Configuration File System skipped, unmet condition check ConditionPathExists=/sys/kernel/config
+[    8.241750] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[    8.571754] systemd-journald[118]: Received client request to flush runtime journal.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+         M…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] M…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+         M…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] M…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0m[0;31m*     [0m] (…)
+M[K[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[K         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] L…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[!p]104\[0m[?7h[1G[0J[6n[32766;32766H[6n[72;1H[!p]104\[0m[?7h[1G[0J[6n[32766;32766H[6n[72;1H]3008;start=7f38fa48b2cc4a6a99a50081bcf10227;user=root;hostname=iot-qemuarm64-secureboot;machineid=474029a5bb494f1f83b157ae7170a9d3;bootid=5066e889b0e8443c8127448957822edc;pid=261;pidfdid=262;comm=(agetty);servicename=serial-getty@ttyAMA0.service;invocationid=1aada08bdaa34dd4bf62922e6ee2bac9;type=service\P+q6E616D65\
+IoT Secure Linux 0.1 iot-qemuarm64-secureboot ttyAMA0
+
+Type 'root' to login with superuser privileges (no password will be asked).
+
+iot-qemuarm64-secureboot login: root
+
+WARNING: Poky is a reference Yocto Project distribution that should be used for
+testing and development purposes only. It is recommended that you create your
+own distribution for production use.
+
+]3008;start=72a7e0a483b1400bb151e358c4f4c25f;user=root;hostname=iot-qemuarm64-secureboot;machineid=474029a5bb494f1f83b157ae7170a9d3;bootid=5066e889b0e8443c8127448957822edc;pid=261;pidfdid=262;comm=login;targetuser=root;sessionid=c1;type=session\7[r[999;999H[6n8root@iot-qemuarm64-secureboot:~# echo "STORE=$TPM2_PKCS11_STORE"
+STORE=/var/lib/tpm2-pkcs11
+root@iot-qemuarm64-secureboot:~# poweroff
+root@iot-qemuarm64-secureboot:~#          Stopping [0;1;39mSession c1 of User root[0m...
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[!p]104\[0m[?7h[1G[0J[6n[32766;32766H[6n[72;1H]3008;end=7f38fa48b2cc4a6a99a50081bcf10227\[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] U…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+         S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] C…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+         U…[0;1;39m[0m.
+         U…[0;1;39m[0m.
+         U…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] U…[0;1;39m[0m.
+[[0;32m  OK  [0m] U…[0;1;39m[0m.
+[[0;32m  OK  [0m] U…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] S…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+[[0;32m  OK  [0m] F…[0;1;39m[0m.
+[[0;32m  OK  [0m] R…[0;1;39m[0m.
+]3008;end=3bd6d5f1b3b941e49ce1251747336c13\[   55.733594] systemd-shutdown[1]: Syncing filesystems and block devices.
+[   55.973765] systemd-shutdown[1]: Sending SIGTERM to remaining processes...
+[   56.032756] systemd-journald[118]: Received SIGTERM from PID 1 (systemd-shutdow).
+[   56.120057] systemd-shutdown[1]: Sending SIGKILL to remaining processes...
+[   56.155100] systemd-shutdown[1]: Unmounting file systems.
+[   56.171811] (sd-umount)[352]: Unmounting '/run/credentials/systemd-journald.service'.
+[   56.181866] (sd-remount)[353]: Remounting '/' read-only with options ''.
+[   56.590404] EXT4-fs (vda2): re-mounted 58e92ee7-782c-47e8-8b07-b680be581d2f ro.
+[   56.604864] systemd-shutdown[1]: All filesystems unmounted.
+[   56.605055] systemd-shutdown[1]: Deactivating swaps.
+[   56.606916] systemd-shutdown[1]: All swaps deactivated.
+[   56.607511] systemd-shutdown[1]: Detaching loop devices.
+[   56.624936] systemd-shutdown[1]: All loop devices detached.
+[   56.625097] systemd-shutdown[1]: Stopping MD devices.
+[   56.627763] systemd-shutdown[1]: All MD devices stopped.
+[   56.628455] systemd-shutdown[1]: Detaching DM devices.
+[   56.632468] systemd-shutdown[1]: All DM devices detached.
+[   56.633076] systemd-shutdown[1]: All filesystems, swaps, loop devices, MD devices and DM devices detached.
+[   56.642646] systemd-shutdown[1]: Syncing filesystems and block devices.
+[   56.650627] systemd-shutdown[1]: Powering off.
+QEMU: Terminated
+runqemu - INFO - Cleaning up
+runqemu - INFO - Host uptime: 13675.24
+
+[?7h
+Script done on 2026-10-26 20:00:49+01:00 [COMMAND_EXIT_CODE="0"]

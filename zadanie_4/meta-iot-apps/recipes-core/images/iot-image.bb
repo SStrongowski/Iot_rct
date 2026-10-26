@@ -14,6 +14,7 @@ IMAGE_INSTALL:append = " \
     opensc \
     libp11 \
     openssl-bin \
+    iot-env \
 "
 
 # nieskompresowany ext4 dla runqemu/QEMU (zapis zmian między startami)
@@ -21,4 +22,4 @@ IMAGE_FSTYPES:append = " ext4"
 #QB_DEFAULT_FSTYPE = "ext4"
 
 # narzędzia TEE tylko na płytkach z OP-TEE (deklaracja w MACHINE_FEATURES, warstwa BSP)
-IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client optee-test', '', d)}"
+IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client optee-test optee-os-ta', '', d)}"
