@@ -1,0 +1,4 @@
+# Zaszyfrowana partycja danych: klucz zapieczętowany w TPM pod politykę PCR.
+# tpm2-device wskazuje jawnie TPM z łańcuchem measured boot (tpm_tis),
+# a nie fTPM z OP-TEE. nofail: bez odblokowania system i tak startuje.
+data     /dev/disk/by-partlabel/data   -      tpm2-device=/dev/tpmrm0,nofail

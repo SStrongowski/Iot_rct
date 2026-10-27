@@ -1,0 +1,23 @@
+Couldn't find component '750-enter-initrd' in event log.
+Didn't find component '770-nvpcr-separator' in event log, assuming system hasn't reached it yet.
+Didn't find component '800-leave-initrd' in event log, assuming system hasn't reached it yet.
+Didn't find component '850-sysinit' in event log, assuming system hasn't reached it yet.
+Didn't find component '900-ready' in event log, assuming system hasn't reached it yet.
+Didn't find component '950-shutdown' in event log, assuming system hasn't reached it yet.
+Didn't find component '990-final' in event log, assuming system hasn't reached it yet.
+Skipped 6 components (770-nvpcr-separator, 800-leave-initrd, 850-sysinit, 900-ready, 950-shutdown, 990-final).
+Unable to recognize 1 components in event log.
+Event log record 22 (PCR 5, "systemd-boot: loader.conf") not matching any component.
+Event log record 28 (PCR 9, "nvpcr-init:cryptsetup:0x1d10201:sha256:d35fa87fe5f641133e435a63d3e25c139f4e6def5644dfcf59c61589476cf105") not matching any component.
+PCR 0 (platform-code) matches event log and fully consists of recognized measurements. Including in set of PCRs.
+PCR 4 (boot-loader-code) matches event log and fully consists of recognized measurements. Including in set of PCRs.
+PCR 7 (secure-boot-policy) matches event log and fully consists of recognized measurements. Including in set of PCRs.
+PCR 12 (kernel-config) matches event log and fully consists of recognized measurements. Including in set of PCRs.
+PCRs in protection mask: 0 (platform-code), 4 (boot-loader-code), 7 (secure-boot-policy), 12 (kernel-config)
+Predicted future PCRs in 3.100ms.
+Retrieved PIN from TPM2 in 291.939ms.
+Calculated new PCR policy in 1.005ms.
+Updated NV index in 153.343ms.
+Written new policy to '/var/lib/systemd/pcrlock.json' and digest to TPM2 NV index 0x1aa1872.
+Did not find XBOOTLDR/ESP partition, not writing boot policy file.
+Overall time spent: 1.059494s

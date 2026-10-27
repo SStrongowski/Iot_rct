@@ -14,7 +14,11 @@ IMAGE_INSTALL:append = " \
     opensc \
     libp11 \
     openssl-bin \
-    iot-env \
+    iot-env \ 
+    systemd-crypt \
+    cryptsetup \
+    e2fsprogs-mke2fs \
+    iot-data \	
 "
 
 # nieskompresowany ext4 dla runqemu/QEMU (zapis zmian między startami)

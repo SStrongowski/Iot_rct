@@ -1,0 +1,13 @@
+[Unit]
+Description=Zaszyfrowana partycja danych
+Requires=systemd-cryptsetup@data.service
+After=systemd-cryptsetup@data.service
+
+[Mount]
+What=/dev/mapper/data
+Where=/data
+Type=ext4
+Options=defaults,noatime
+
+[Install]
+WantedBy=local-fs.target

@@ -1,0 +1,5 @@
+  4 # boot-loader-code   efi-boot-services-application     - a35a1e7bd1a375504de005becbbe33b064939740a2a2f9d63c22e17649a8985f F   250-firmware-code-early           File: \EFI\BOOT\BOOTAA64.EFI
+  4 # boot-loader-code   efi-action                        + 3d6772b4f84ed47595d72a2c4c5ffd15f5bb72c7507fe26f2aaee2c69d5633ba F   350-action-efi-application        Action: Calling EFI Application from Boot Option
+  4 # boot-loader-code   separator                         + df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119 F   500-separator                     Separator: Success (0x00)
+  4 # boot-loader-code   efi-boot-services-application     - 47f6d0997f80aa5426480ba6086a229e6193c933cd0baba47bcb8b522ce391d7 F   650-kernel                        File: \Image
+  4 # boot-loader-code        4 + + + 240e322e4664d3d8ad302e460d864e9c9ab385119b3a298fb60dc7424b3359c1 240e322e4664d3d8ad302e460d864e9c9ab385119b3a298fb60dc7424b3359c1

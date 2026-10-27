@@ -4,8 +4,14 @@
 set -eo pipefail
 
 FSTYPE="${FSTYPE:-}"
-SETUP_DIR="${SETUP_DIR:-$HOME/yocto/bitbake-builds/iot-qemuarm64}"
-TPM_DIR="${TPM_DIR:-$HOME/yocto/swtpm-state}"
+# zmienne dla iot-qemuarm64
+#SETUP_DIR="${SETUP_DIR:-$HOME/yocto/bitbake-builds/iot-qemuarm64}"
+#TPM_DIR="${TPM_DIR:-$HOME/yocto/swtpm-state}"
+
+# zmienne  dla  iot-qemuarm64-secureboot
+SETUP_DIR="${SETUP_DIR:-$HOME/yocto/bitbake-builds/iot-qemuarm64-secureboot}"
+TPM_DIR="${TPM_DIR:-$HOME/yocto/swtpm-secureboot}"
+
 mkdir -p "$TPM_DIR"
 
 # zatrzymaj ewentualny poprzedni swtpm dla tego katalogu

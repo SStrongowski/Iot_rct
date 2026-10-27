@@ -1,0 +1,32 @@
+Tokens:
+  0: systemd-tpm2
+	tpm2-hash-pcrs:   
+	tpm2-pcr-bank:    n/a
+	tpm2-pubkey:
+	            (null)
+	tpm2-pubkey-pcrs: 
+	tpm2-primary-alg: ecc
+	tpm2-pin:         false
+	tpm2-pcrlock:     true
+	tpm2-salt:        false
+	tpm2-srk:         true
+	tpm2-pcrlock-nv:  true
+	tpm2-policy-hash:
+	            96 12 07 b5 dc 66 d9 02 1c 3b d8 56 71 4c c6 20
+	            dd af 6f e3 38 11 bb 69 8d c1 15 67 7e b8 56 55
+	tpm2-blob:  00 9e 00 20 05 9f 67 da dc 71 0f ae 0a 9e 8c 1b
+	            f5 a8 4e 49 0b 7f ca 79 34 5e e3 e1 d4 4b 54 53
+	            20 56 bc 9a 00 10 d6 39 dd a7 01 3c 9a 59 d7 43
+	            30 14 e5 22 a5 ce 8d 8a 89 fd fe 49 da db e9 7c
+	            49 5c ff a1 c3 50 a1 63 7b 9a 8c 5b 23 7a 2d 6a
+	            ba 1e 7d c6 a4 5f f9 7c c9 35 fb 66 54 70 cd 9a
+	            24 1b 46 fb 82 74 cb 52 c4 88 92 79 27 3d cb 16
+	            a7 06 32 9a 0c a3 39 be b9 7e 82 7e 91 aa 97 26
+	            56 09 a3 49 af 0f 7f ab 8c e1 64 23 e8 79 27 e7
+	            31 eb 87 be f1 3f c9 95 dd 02 1b 3b 7a db 50 7a
+	            00 4e 00 08 00 0b 00 00 04 12 00 20 96 12 07 b5
+	            dc 66 d9 02 1c 3b d8 56 71 4c c6 20 dd af 6f e3
+	            38 11 bb 69 8d c1 15 67 7e b8 56 55 00 10 00 20
+	            c7 af 4e 90 b4 66 c5 b1 f1 fc 62 af 20 c1 58 fb
+	            71 76 e8 7a 20 be ee d1 39 bd e4 4e e8 03 3a 8d
+	Keyslot:    1

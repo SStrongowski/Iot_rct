@@ -2,6 +2,8 @@
 # Dysk z tablicą GPT:
 #  1. partycja EFI (ESP): systemd-boot jako EFI/BOOT/bootaa64.efi + kernel
 #  2. system plików root (ext4)
+#  3. dane do zaszyfrowania na urządzeniu
 part /boot --source bootimg-efi --sourceparams="loader=systemd-boot" --label boot --active --align 1024 --use-uuid
 part /     --source rootfs --fstype=ext4 --label root --align 1024 --use-uuid
+part --label data --size 256M --align 1024 --use-uuid
 bootloader --ptable gpt --timeout=3 --append="console=ttyAMA0 rootwait"
