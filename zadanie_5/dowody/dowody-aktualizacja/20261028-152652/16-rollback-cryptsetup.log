@@ -1,0 +1,87 @@
+Oct 28 15:29:30 iot-qemuarm64-secureboot systemd[1]: Starting Cryptography Setup for data...
+Oct 28 15:29:30 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:29:30 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:29:30 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:29:30 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:09 iot-qemuarm64-secureboot systemd-cryptsetup[202]: Could not find TPM2 device: Name not unique on network
+Oct 28 15:30:09 iot-qemuarm64-secureboot systemd-cryptsetup[202]: Set cipher aes, mode xts-plain64, key size 512 bits for device /dev/disk/by-partlabel/data.
+Oct 28 15:30:10 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:10 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:10 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:10 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:13 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:13 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:13 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:13 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:14 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:14 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:14 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:14 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:15 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:15 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:15 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:15 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:15 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:15 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:15 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:15 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:16 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:16 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:16 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:16 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:16 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:16 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:16 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:16 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:17 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:17 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:17 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:17 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:18 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:18 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:18 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:18 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:18 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:18 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:18 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:18 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:19 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:19 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:19 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:19 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:19 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:19 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:19 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:19 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:20 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:20 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:20 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:20 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:20 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:20 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:20 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:20 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:21 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:21 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:21 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:21 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:21 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:21 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:21 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:21 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:22 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Oct 28 15:30:26 iot-qemuarm64-secureboot systemd-cryptsetup[202]: WARNING:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:286:Esys_PolicyOR_Finish() Received TPM Error
+Oct 28 15:30:26 iot-qemuarm64-secureboot systemd-cryptsetup[202]: ERROR:esys:/usr/src/debug/tpm2-tss/4.1.3/src/tss2-esys/api/Esys_PolicyOR.c:100:Esys_PolicyOR() Esys Finish ErrorCode (0x000001c4)
+Oct 28 15:30:26 iot-qemuarm64-secureboot systemd-cryptsetup[202]: None of the alternative values for PCR 4 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Oct 28 15:30:26 iot-qemuarm64-secureboot systemd-cryptsetup[202]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
