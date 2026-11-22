@@ -1,0 +1,22 @@
+#!/bin/sh
+# iot-update <plik.swu>: instalacja aktualizacji na nieaktywny slot (A/B)
+set -eu
+
+SWU="${1:?użycie: iot-update <plik.swu>}"
+getenv() { fw_printenv "$1" 2>/dev/null | cut -d= -f2-; }
+
+CUR=$(getenv slot)
+case "$CUR" in
+    A) TARGET=copy2 ;;   # działamy na A → zapis do B
+    B) TARGET=copy1 ;;   # działamy na B → zapis do A
+    *) echo "BŁĄD: nieznany bieżący slot '$CUR'" >&2; exit 1 ;;
+esac
+
+if [ "$(getenv upgrade_available)" = "1" ]; then
+    echo "BŁĄD: poprzednia aktualizacja nie została zatwierdzona" >&2
+    exit 1
+fi
+
+echo "== bieżący slot: $CUR, instalacja: $TARGET"
+swupdate -v -e "stable,$TARGET" -i "$SWU"
+echo "== zainstalowano; uruchom ponownie (reboot), aby wystartować nowy system"

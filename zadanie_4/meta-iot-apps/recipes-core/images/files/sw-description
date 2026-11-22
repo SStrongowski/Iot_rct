@@ -1,0 +1,42 @@
+software =
+{
+    version = "1.0.0";
+    hardware-compatibility: [ "1.0" ];
+    stable = {
+        /* zapis do slotu A (gdy działamy na B) */
+        copy1 = {
+            images: (
+                {
+                    filename = "iot-image-@@MACHINE@@.rootfs.ext4.gz";
+                    sha256 = "$swupdate_get_sha256(iot-image-@@MACHINE@@.rootfs.ext4.gz)";
+                    type = "raw";
+                    compressed = "zlib";
+                    device = "/dev/disk/by-partlabel/rootfsA";
+                }
+            );
+            bootenv: (
+                { name = "slot";              value = "A"; },
+                { name = "upgrade_available"; value = "1"; },
+                { name = "bootcount";         value = "0"; }
+            );
+        };
+
+        /* zapis do slotu B (gdy działamy na A) */
+        copy2 = {
+            images: (
+                {
+                    filename = "iot-image-@@MACHINE@@.rootfs.ext4.gz";
+                    sha256 = "$swupdate_get_sha256(iot-image-@@MACHINE@@.rootfs.ext4.gz)";
+                    type = "raw";
+                    compressed = "zlib";
+                    device = "/dev/disk/by-partlabel/rootfsB";
+                }
+            );
+            bootenv: (
+                { name = "slot";              value = "B"; },
+                { name = "upgrade_available"; value = "1"; },
+                { name = "bootcount";         value = "0"; }
+            );
+        };
+    };
+}

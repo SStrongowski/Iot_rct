@@ -24,7 +24,7 @@ IMAGE_INSTALL:append = " \
 "
 
 # nieskompresowany ext4 dla runqemu/QEMU (zapis zmian między startami)
-IMAGE_FSTYPES:append = " ext4"
+IMAGE_FSTYPES:append = " ext4 ext4.gz"
 #QB_DEFAULT_FSTYPE = "ext4"
 
 # narzędzia TEE tylko na płytkach z OP-TEE (deklaracja w MACHINE_FEATURES, warstwa BSP)

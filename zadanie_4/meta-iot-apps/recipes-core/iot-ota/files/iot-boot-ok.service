@@ -1,0 +1,10 @@
+[Unit]
+Description=Zatwierdzenie udanego startu po aktualizacji (A/B)
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'if [ "$(fw_printenv upgrade_available 2>/dev/null | cut -d= -f2)" = "1" ]; then fw_setenv upgrade_available 0 && fw_setenv bootcount 0 && echo "Aktualizacja zatwierdzona"; fi'
+
+[Install]
+WantedBy=multi-user.target
