@@ -1,0 +1,18 @@
+root@iot-qemuarm64-secureboot:~# fw_printenv slot upgrade_available bootcount
+slot=B
+upgrade_available=0
+bootcount=0
+root@iot-qemuarm64-secureboot:~# e2fsck -n /dev/disk/by-partlabel/rootfsA; echo "kod: $?"
+e2fsck 1.47.4 (6-Mar-2025)
+Superblock has an invalid journal (inode 8).
+Clear? no
+
+Journal superblock is corrupt.
+Fix? no
+
+e2fsck: The journal superblock is corrupt while checking journal for /dev/disk/by-partlabel/rootfsA
+e2fsck: Cannot proceed with file system check
+
+/dev/disk/by-partlabel/rootfsA: ********** WARNING: Filesystem still has errors **********
+
+kod: 12

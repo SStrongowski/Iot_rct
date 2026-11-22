@@ -18,5 +18,5 @@ if [ "$(getenv upgrade_available)" = "1" ]; then
 fi
 
 echo "== bieżący slot: $CUR, instalacja: $TARGET"
-swupdate -v -e "stable,$TARGET" -i "$SWU"
+swupdate -v -f /etc/swupdate/iot.cfg -e "stable,$TARGET" -i "$SWU"
 echo "== zainstalowano; uruchom ponownie (reboot), aby wystartować nowy system"

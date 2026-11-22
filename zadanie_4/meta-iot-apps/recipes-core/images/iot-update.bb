@@ -10,3 +10,8 @@ inherit swupdate
 IMAGE_DEPENDS = "iot-image"
 SWUPDATE_IMAGES = "iot-image"
 SWUPDATE_IMAGES_FSTYPES[iot-image] = ".rootfs.ext4.gz"
+
+# Podpis manifestu kluczem z tokena PKCS#11 (SoftHSM): tryb CUSTOM, bo klucza nie da się wyeksportować
+IOT_SIGNING_DIR ?= ""
+SWUPDATE_SIGNING = "CUSTOM"
+SWUPDATE_SIGN_TOOL = "${THISDIR}/files/swu-sign.sh ${IOT_SIGNING_DIR}"

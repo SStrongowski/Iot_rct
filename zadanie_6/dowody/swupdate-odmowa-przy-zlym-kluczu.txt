@@ -1,0 +1,17 @@
+root@iot-qemuarm64-secureboot:~# for f in niepodpisany zly-klucz zmieniony; do
+>     echo "===== $f ====="
+>     swupdate -v -f /etc/swupdate/iot.cfg -e stable,copy2 -i /root/$f.swu 2>&1 | grep -E 'ERROR|Verified' | head -n 4
+> done
+===== niepodpisany =====
+[ERROR] : SWUPDATE failed [1] Image invalid or corrupted. Not installing ...
+[ERROR] : SWUPDATE failed [0] ERROR install_from_file.c : endupdate : 55 : SWUpdate *failed* !
+===== zly-klucz =====
+[ERROR] : SWUPDATE failed [0] ERROR swupdate_cms_verify_openssl.c : openssl_cms_verify_file : 400 : Signature verification failed
+[ERROR] : SWUPDATE failed [0] ERROR stream_interface.c : extract_files : 227 : Compatible SW not found
+[ERROR] : SWUPDATE failed [1] Image invalid or corrupted. Not installing ...
+[ERROR] : SWUPDATE failed [0] ERROR install_from_file.c : endupdate : 55 : SWUpdate *failed* !
+===== zmieniony =====
+[ERROR] : SWUPDATE failed [0] ERROR swupdate_cms_verify_openssl.c : openssl_cms_verify_file : 400 : Signature verification failed
+[ERROR] : SWUPDATE failed [0] ERROR stream_interface.c : extract_files : 227 : Compatible SW not found
+[ERROR] : SWUPDATE failed [1] Image invalid or corrupted. Not installing ...
+[ERROR] : SWUPDATE failed [0] ERROR install_from_file.c : endupdate : 55 : SWUpdate *failed* !
