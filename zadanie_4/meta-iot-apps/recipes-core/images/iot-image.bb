@@ -18,7 +18,9 @@ IMAGE_INSTALL:append = " \
     systemd-crypt \
     cryptsetup \
     e2fsprogs-mke2fs \
-    iot-data \	
+    iot-data \
+    libubootenv-bin \
+    iot-ota \	
 "
 
 # nieskompresowany ext4 dla runqemu/QEMU (zapis zmian między startami)

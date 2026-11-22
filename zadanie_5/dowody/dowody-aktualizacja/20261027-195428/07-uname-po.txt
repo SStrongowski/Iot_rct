@@ -1,0 +1,1 @@
+Linux iot-qemuarm64-secureboot 6.18.52-iot-v3 #1 SMP PREEMPT Wed Sep 23 03:10:06 UTC 2026 aarch64 GNU/Linux

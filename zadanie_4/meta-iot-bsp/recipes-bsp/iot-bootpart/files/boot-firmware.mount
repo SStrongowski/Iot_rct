@@ -1,0 +1,11 @@
+[Unit]
+Description=Partycja startowa (skrypt i zmienne U-Boota)
+
+[Mount]
+What=/dev/disk/by-partlabel/boot
+Where=/boot/firmware
+Type=vfat
+Options=defaults,noatime
+
+[Install]
+WantedBy=local-fs.target
