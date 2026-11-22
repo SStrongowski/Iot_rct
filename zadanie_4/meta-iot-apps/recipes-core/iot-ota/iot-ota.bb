@@ -6,6 +6,7 @@ SRC_URI = "file://10-watchdog.conf \
            file://iot-update \
            file://iot-boot-ok.service \
 	   file://iot.cfg \
+	   file://iot-boot-ok \
 	   file://swupdate-signing.crt"
 
 # Przepis bez archiwum: źródła to pojedyncze pliki rozpakowane wprost do UNPACKDIR
@@ -25,9 +26,13 @@ do_install() {
     install -d ${D}${sysconfdir}/swupdate
     install -m 0644 ${UNPACKDIR}/swupdate-signing.crt ${D}${sysconfdir}/swupdate/
     install -m 0644 ${UNPACKDIR}/iot.cfg ${D}${sysconfdir}/swupdate/
+    install -m 0755 ${UNPACKDIR}/iot-boot-ok ${D}${bindir}/
+    echo "${IOT_SW_VERSION}" > ${D}${sysconfdir}/iot-sw-version
 }
 FILES:${PN} = "${systemd_unitdir}/system.conf.d/10-watchdog.conf \
                ${bindir}/iot-update \
                ${systemd_system_unitdir}/iot-boot-ok.service \
 	       ${sysconfdir}/swupdate/iot.cfg \
-	       ${sysconfdir}/swupdate/swupdate-signing.crt"
+	       ${sysconfdir}/swupdate/swupdate-signing.crt \
+	       ${bindir}/iot-boot-ok \
+	       ${sysconfdir}/iot-sw-version"

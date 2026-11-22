@@ -15,3 +15,5 @@ SWUPDATE_IMAGES_FSTYPES[iot-image] = ".rootfs.ext4.gz"
 IOT_SIGNING_DIR ?= ""
 SWUPDATE_SIGNING = "CUSTOM"
 SWUPDATE_SIGN_TOOL = "${THISDIR}/files/swu-sign.sh ${IOT_SIGNING_DIR}"
+
+do_swuimage[vardeps] += "IOT_SW_VERSION"

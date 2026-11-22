@@ -1,0 +1,13 @@
+#!/bin/sh
+# iot-boot-ok: zatwierdzenie udanego startu po aktualizacji (A/B) + podniesienie min_version
+set -eu
+
+getenv() { fw_printenv "$1" 2>/dev/null | cut -d= -f2-; }
+
+[ "$(getenv upgrade_available)" = "1" ] || exit 0    # nie było aktualizacji
+
+VER=$(cat /etc/iot-sw-version)
+fw_setenv upgrade_available 0
+fw_setenv bootcount 0
+fw_setenv min_version "$VER"                         # anti-rollback: od teraz nic starszego
+echo "Aktualizacja zatwierdzona, wersja $VER (min_version=$VER)"

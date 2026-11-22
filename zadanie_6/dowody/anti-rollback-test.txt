@@ -1,0 +1,16 @@
+root@iot-qemuarm64-secureboot:~# fw_printenv slot upgrade_available min_version
+slot=B
+upgrade_available=0
+min_version=1.1.0
+root@iot-qemuarm64-secureboot:~# cat /etc/iot-sw-version
+1.1.0
+root@iot-qemuarm64-secureboot:~# iot-update /root/iot-update-1.0.0.swu 2>&1 | grep -E 'ERROR|older|version' | head -n 5
+[DEBUG] : SWUPDATE running :  [read_module_settings] : No config settings found for module versions
+[DEBUG] : SWUPDATE running :  [compare_versions] : Comparing old-style versions '1.0.0' <-> '1.1.0'
+[TRACE] : SWUPDATE running :  [compare_versions] : Parsed: '281474976710656' <-> '281479271677952'
+[ERROR] : SWUPDATE failed [0] ERROR parser.c : parse : 260 : No downgrading allowed: new version 1.0.0 < installed 1.1.0
+[ERROR] : SWUPDATE failed [0] ERROR stream_interface.c : extract_files : 227 : Compatible SW not found
+root@iot-qemuarm64-secureboot:~# fw_printenv slot upgrade_available min_version
+slot=B
+upgrade_available=0
+min_version=1.1.0
