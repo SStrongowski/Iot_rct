@@ -4,4 +4,5 @@ part / --source rootfs --fstype=ext4 --label rootfsA --align 1024 --fixed-size 1
 part --source rootfs --fstype=ext4 --label rootfsB --align 1024 --fixed-size 1024M --use-uuid
 part --fstype=ext4 --label rescue --align 1024 --size 256M --use-uuid
 part --label data --align 1024 --size 256M --use-uuid
+part --fstype=ext4 --label persist --align 1024 --size 32M --use-uuid
 bootloader --ptable gpt

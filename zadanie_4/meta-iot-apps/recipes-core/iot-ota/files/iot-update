@@ -1,14 +1,17 @@
 #!/bin/sh
 # iot-update <plik.swu>: instalacja aktualizacji na nieaktywny slot (A/B)
+#  1. SWUpdate: weryfikacja podpisu i wersji (min_version), zapis obrazu, zmienne U-Boota
+#  2. polityka TPM: dopuszczenie kernela i parametrów nowego slotu (dane odblokują się po restarcie)
 set -eu
+. /usr/lib/iot/iot-pcrlock.sh
 
 SWU="${1:?użycie: iot-update <plik.swu>}"
 getenv() { fw_printenv "$1" 2>/dev/null | cut -d= -f2-; }
 
 CUR=$(getenv slot)
 case "$CUR" in
-    A) TARGET=copy2 ;;   # działamy na A → zapis do B
-    B) TARGET=copy1 ;;   # działamy na B → zapis do A
+    A) TARGET=copy2; T=B ;;   # działamy na A → zapis do B
+    B) TARGET=copy1; T=A ;;   # działamy na B → zapis do A
     *) echo "BŁĄD: nieznany bieżący slot '$CUR'" >&2; exit 1 ;;
 esac
 
@@ -18,7 +21,21 @@ if [ "$(getenv upgrade_available)" = "1" ]; then
 fi
 
 MIN=$(getenv min_version)
-MIN=${MIN:-0.0.0}
-echo "== bieżący slot: $CUR, instalacja: $TARGET, minimalna wersja: $MIN"
+MIN=${MIN:-0.0.0}                                    # brak licznika = pierwsza aktualizacja
+echo "== bieżący slot: $CUR, instalacja: $TARGET (slot $T), minimalna wersja: $MIN"
 swupdate -v -f /etc/swupdate/iot.cfg -N "$MIN" -e "stable,$TARGET" -i "$SWU"
+
+if policy_present; then
+    echo "== polityka TPM: dopuszczenie systemu ze slotu $T"
+    if ! { single_tpm && policy_add_slot "$T" && policy_check_current && policy_write; }; then
+        echo "BŁĄD: nie udało się zaktualizować polityki TPM - cofam przełączenie slotu" >&2
+        fw_setenv slot "$CUR"
+        fw_setenv upgrade_available 0
+        fw_setenv bootcount 0
+        exit 1
+    fi
+else
+    echo "== polityka TPM nieobecna (brak provisioningu) - pomijam"
+fi
+
 echo "== zainstalowano; uruchom ponownie (reboot), aby wystartować nowy system"

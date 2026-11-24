@@ -1,6 +1,10 @@
 #!/bin/sh
-# iot-boot-ok: zatwierdzenie udanego startu po aktualizacji (A/B) + podniesienie min_version
+# iot-boot-ok: zatwierdzenie udanego startu po aktualizacji (A/B)
+#  1. upgrade_available=0, bootcount=0 (koniec okna automatycznego rollbacku)
+#  2. min_version = wersja działającego systemu (anti-rollback przy instalacji)
+#  3. polityka TPM: stary slot traci dostęp do danych (anti-rollback dla danych)
 set -eu
+. /usr/lib/iot/iot-pcrlock.sh
 
 getenv() { fw_printenv "$1" 2>/dev/null | cut -d= -f2-; }
 
@@ -9,5 +13,18 @@ getenv() { fw_printenv "$1" 2>/dev/null | cut -d= -f2-; }
 VER=$(cat /etc/iot-sw-version)
 fw_setenv upgrade_available 0
 fw_setenv bootcount 0
-fw_setenv min_version "$VER"                         # anti-rollback: od teraz nic starszego
+fw_setenv min_version "$VER"
 echo "Aktualizacja zatwierdzona, wersja $VER (min_version=$VER)"
+
+policy_present || exit 0
+CUR=$(getenv slot)
+OLD=$([ "$CUR" = A ] && echo B || echo A)
+
+if single_tpm && policy_remove_slot "$OLD" && policy_check_current && policy_write; then
+    policy_drop_removed
+    echo "Polityka TPM: system ze slotu $OLD nie dostanie klucza do danych"
+else
+    policy_restore_slot "$OLD"
+    echo "UWAGA: nie udało się zaktualizować polityki TPM; slot $OLD nadal dopuszczony" >&2
+fi
+

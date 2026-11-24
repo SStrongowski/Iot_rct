@@ -1,0 +1,21 @@
+root@iot-qemuarm64-secureboot:~# ls /persist/pcrlock/pcrlock.d/300-kernel.pcrlock.d/ /persist/pcrlock/pcrlock.d/710-kernel-cmdline.pcrlock.d/
+/persist/pcrlock/pcrlock.d/300-kernel.pcrlock.d/:
+B.pcrlock
+
+/persist/pcrlock/pcrlock.d/710-kernel-cmdline.pcrlock.d/:
+B.pcrlock
+root@iot-qemuarm64-secureboot:~# ls /persist/pcrlock/removed/ 2>&1
+ls: /persist/pcrlock/removed/: No such file or directory
+root@iot-qemuarm64-secureboot:~# journalctl -b -u systemd-cryptsetup@data --no-pager | grep -E 'PCR|policy|alternative' | head
+Nov 24 09:41:04 iot-qemuarm64-secureboot systemd-cryptsetup[207]: None of the alternative values for PCR 9 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Nov 24 09:41:04 iot-qemuarm64-secureboot systemd-cryptsetup[207]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Nov 24 09:41:24 iot-qemuarm64-secureboot systemd-cryptsetup[207]: None of the alternative values for PCR 9 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Nov 24 09:41:24 iot-qemuarm64-secureboot systemd-cryptsetup[207]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Nov 24 09:41:27 iot-qemuarm64-secureboot systemd-cryptsetup[207]: None of the alternative values for PCR 9 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Nov 24 09:41:27 iot-qemuarm64-secureboot systemd-cryptsetup[207]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Nov 24 09:41:29 iot-qemuarm64-secureboot systemd-cryptsetup[207]: None of the alternative values for PCR 9 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Nov 24 09:41:29 iot-qemuarm64-secureboot systemd-cryptsetup[207]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+Nov 24 09:41:31 iot-qemuarm64-secureboot systemd-cryptsetup[207]: None of the alternative values for PCR 9 encoded in policy match the current TPM state. Either the system has been tempered with or the provided policy is incorrect.
+Nov 24 09:41:31 iot-qemuarm64-secureboot systemd-cryptsetup[207]: TPM policy does not match current system state. Either system has been tempered with or policy out-of-date: No anode
+root@iot-qemuarm64-secureboot:~# fw_printenv slot
+slot=A

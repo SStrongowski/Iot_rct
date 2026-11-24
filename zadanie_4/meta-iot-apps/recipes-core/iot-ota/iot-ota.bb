@@ -7,14 +7,15 @@ SRC_URI = "file://10-watchdog.conf \
            file://iot-boot-ok.service \
 	   file://iot.cfg \
 	   file://iot-boot-ok \
-	   file://swupdate-signing.crt"
+	   file://swupdate-signing.crt \
+	   file://iot-pcrlock.sh"
 
 # Przepis bez archiwum: źródła to pojedyncze pliki rozpakowane wprost do UNPACKDIR
 S = "${UNPACKDIR}"
 
 inherit systemd allarch
 SYSTEMD_SERVICE:${PN} = "iot-boot-ok.service"
-RDEPENDS:${PN} = "swupdate libubootenv-bin"
+RDEPENDS:${PN} = "swupdate libubootenv-bin tpm2-tools"
 
 do_install() {
     install -d ${D}${systemd_unitdir}/system.conf.d
@@ -28,6 +29,8 @@ do_install() {
     install -m 0644 ${UNPACKDIR}/iot.cfg ${D}${sysconfdir}/swupdate/
     install -m 0755 ${UNPACKDIR}/iot-boot-ok ${D}${bindir}/
     echo "${IOT_SW_VERSION}" > ${D}${sysconfdir}/iot-sw-version
+    install -d ${D}${nonarch_libdir}/iot
+    install -m 0644 ${UNPACKDIR}/iot-pcrlock.sh ${D}${nonarch_libdir}/iot/
 }
 FILES:${PN} = "${systemd_unitdir}/system.conf.d/10-watchdog.conf \
                ${bindir}/iot-update \
@@ -35,4 +38,5 @@ FILES:${PN} = "${systemd_unitdir}/system.conf.d/10-watchdog.conf \
 	       ${sysconfdir}/swupdate/iot.cfg \
 	       ${sysconfdir}/swupdate/swupdate-signing.crt \
 	       ${bindir}/iot-boot-ok \
-	       ${sysconfdir}/iot-sw-version"
+	       ${sysconfdir}/iot-sw-version \
+	       ${nonarch_libdir}/iot/iot-pcrlock.sh"

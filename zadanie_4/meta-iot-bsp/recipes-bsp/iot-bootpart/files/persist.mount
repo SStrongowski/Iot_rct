@@ -1,0 +1,11 @@
+[Unit]
+Description=Dane provisioningu (polityka TPM, tożsamość urządzenia), wspólne dla slotów A/B
+
+[Mount]
+What=/dev/disk/by-partlabel/persist
+Where=/persist
+Type=ext4
+Options=defaults,noatime
+
+[Install]
+WantedBy=local-fs.target
