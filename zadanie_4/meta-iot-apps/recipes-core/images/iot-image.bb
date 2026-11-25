@@ -21,6 +21,7 @@ IMAGE_INSTALL:append = " \
     iot-data \
     libubootenv-bin \
     iot-ota \	
+    iot-identity \
 "
 
 # nieskompresowany ext4 dla runqemu/QEMU (zapis zmian między startami)
@@ -29,3 +30,6 @@ IMAGE_FSTYPES:append = " ext4 ext4.gz"
 
 # narzędzia TEE tylko na płytkach z OP-TEE (deklaracja w MACHINE_FEATURES, warstwa BSP)
 IMAGE_INSTALL:append = " ${@bb.utils.contains('MACHINE_FEATURES', 'optee', 'optee-client optee-test optee-os-ta', '', d)}"
+
+# Zadanie 7: klienci mTLS (klucz przez PKCS#11 z TPM)
+IMAGE_INSTALL += "mosquitto-clients curl"

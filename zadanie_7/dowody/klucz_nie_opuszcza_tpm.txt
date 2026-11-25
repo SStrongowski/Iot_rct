@@ -1,0 +1,54 @@
+root@iot-qemuarm64-secureboot:~# eval "$(iot-identity env)"
+root@iot-qemuarm64-secureboot:~# M=$(grep MODULE_PATH $OPENSSL_CONF | awk '{print $3}')
+root@iot-qemuarm64-secureboot:~# pkcs11-tool --module $M --token-label iot-identity --login --pin "$(cat /persist/identity/pin)" -O
+Private Key Object; EC
+  label:      device-20261125092731
+  ID:         63:34:62:62:64:30:39:31:66:31:64:62:34:38:66:36
+  Usage:      decrypt, sign
+  Access:     sensitive, always sensitive, never extractable, local
+  Allowed mechanisms: ECDSA,ECDSA-SHA1,ECDSA-SHA256,ECDSA-SHA384,ECDSA-SHA512
+  uri:        pkcs11:model=SW%20%20%20TPM;manufacturer=IBM;serial=0000000000000000;token=iot-identity;id=%63%34%62%62%64%30%39%31%66%31%64%62%34%38%66%36;object=device-20261125092731;type=private
+Public Key Object; EC  EC_POINT 256 bits
+  EC Point:   044104e5774fb933058eb742586debfdf17afd4787dad0cbd653569e5550e4fb
+              d36fb909bf21f393cefa15b8bd4700e0a17f0238ebeca71bddc5b9d1792e5f9f
+              b5b500
+  EC Params:  06:08:2a:86:48:ce:3d:03:01:07 ("prime256v1" OID:"1.2.840.10045.3.1.7")
+  label:      device-20261125092731
+  ID:         63:34:62:62:64:30:39:31:66:31:64:62:34:38:66:36
+  Usage:      encrypt, verify
+  Access:     local
+  Allowed mechanisms: ECDSA,ECDSA-SHA1,ECDSA-SHA256,ECDSA-SHA384,ECDSA-SHA512
+  uri:        pkcs11:model=SW%20%20%20TPM;manufacturer=IBM;serial=0000000000000000;token=iot-identity;id=%63%34%62%62%64%30%39%31%66%31%64%62%34%38%66%36;object=device-20261125092731;type=public
+root@iot-qemuarm64-secureboot:~# sitive, always sensitive, never e^C
+
+root@iot-qemuarm64-secureboot:~# pkcs11-tool --module $M --token-label iot-identity --login --pin "$(cat /persist/identity/pin)" \
+>     --read-object --type privkey --label "$(cat /persist/identity/current)" -o /tmp/proba.der; echo "kod: $?"
+sorry, reading private keys not (yet) supported
+kod: 0
+root@iot-qemuarm64-secureboot:~# cd /tmp
+root@iot-qemuarm64-secureboot:/tmp# tpm2_ptool export --path=/persist/identity/tpm2-pkcs11 --label=iot-identity \
+>     --key-label="$(cat /persist/identity/current)" --userpin="$(cat /persist/identity/pin)"
+object-auth: 30aa2011bc74d3fc0b68218b6b6ad037
+primary-object:
+  auth: ''
+  hierarchy: owner
+  is_transient: false
+
+root@iot-qemuarm64-secureboot:/tmp# ls -l /tmp/*.pem
+-rw-r--r--    1 root     root           398 Nov 25 09:39 /tmp/device-20261125092731.pem
+root@iot-qemuarm64-secureboot:/tmp# head -n 1 /tmp/*.pem
+-----BEGIN TSS2 PRIVATE KEY-----
+root@iot-qemuarm64-secureboot:/tmp# openssl asn1parse -in /tmp/$(cat /persist/identity/current).pem | head -n 20
+    0:d=0  hl=3 l= 241 cons: SEQUENCE
+    3:d=1  hl=2 l=   6 prim: OBJECT            :2.23.133.10.1.3
+   11:d=1  hl=2 l=   3 cons: cont [ 0 ]
+   13:d=2  hl=2 l=   1 prim: BOOLEAN           :0
+   16:d=1  hl=2 l=   5 prim: INTEGER           :81000000
+   23:d=1  hl=2 l=  88 prim: OCTET STRING      [HEX DUMP]:00560023000B00060072000000100010000300100020E5774FB933058EB742586DEBFDF17AFD4787DAD0CBD653569E5550E4FBD36FB9002009BF21F393CEFA15B8BD4700E0A17F0238EBECA71BDDC5B9D1792E5F9FB5B500
+  113:d=1  hl=3 l= 128 prim: OCTET STRING      [HEX DUMP]:007E0020AD1672FF839A4E9D4E673F289C4BCAE725D0F341A6E227EEC30BC7F4803CA2CB0010D1908AF5FEBD8564876257E9438D326EA40D5A3B9609906B568E2F3E3C572F8C0157DFDFCB7F424A1BAD8D1AB6495AE83A0C18DB9B076EA21868600A31780DE029A85D86C0A0F0FFB9AC78AFAA818D6B47254C8C9FC9AF2CFBCF
+root@iot-qemuarm64-secureboot:/tmp# echo "test tozsamosci" > /tmp/msg
+root@iot-qemuarm64-secureboot:/tmp# openssl dgst -sha256 -engine pkcs11 -keyform engine -sign "$IOT_KEY" -out /tmp/msg.sig /tmp/msg
+Engine "pkcs11" set.
+root@iot-qemuarm64-secureboot:/tmp# openssl x509 -in "$IOT_CERT" -noout -pubkey > /tmp/pub.pem
+root@iot-qemuarm64-secureboot:/tmp# openssl dgst -sha256 -verify /tmp/pub.pem -signature /tmp/msg.sig /tmp/msg
+Verified OK

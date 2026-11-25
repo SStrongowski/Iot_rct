@@ -43,11 +43,12 @@
                 "meta-yocto/meta-poky",
                 "meta-openembedded/meta-oe",
                 "meta-openembedded/meta-python",
+                "meta-openembedded/meta-networking",
                 "meta-arm/meta-arm-toolchain",
                 "meta-arm/meta-arm",
                 "meta-security/meta-tpm",
                 "meta-raspberrypi",
-		"meta-swupdate"
+		        "meta-swupdate"
             ],
             "bb-layers-file-relative": [
                 "meta-iot-bsp",

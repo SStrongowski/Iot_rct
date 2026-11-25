@@ -1,0 +1,59 @@
+# openssl-ca.cnf — konfiguracja mini-CA dla urządzeń i usług (zadanie 7)
+# Katalog danych CA (klucz prywatny!) poza repozytorium: zmienna IOT_CA_DIR (domyślnie ~/iot-ca)
+
+[ ca ]
+default_ca = iot_ca
+
+[ iot_ca ]
+dir              = $ENV::IOT_CA_DIR
+database         = $dir/index.txt          # rejestr wydanych i odwołanych certyfikatów
+new_certs_dir    = $dir/newcerts
+certificate      = $dir/ca.crt
+private_key      = $dir/private/ca.key
+serial           = $dir/serial
+crlnumber        = $dir/crlnumber
+crl              = $dir/crl.pem
+default_md       = sha256
+default_days     = 365
+default_crl_days = 30
+policy           = policy_iot
+# Rotacja: dwa ważne certyfikaty z tym samym CN naraz (stary i nowy)
+unique_subject   = no
+# CA decyduje o rozszerzeniach — nie kopiujemy ich z CSR (urządzenie nie może poprosić o CA:TRUE)
+copy_extensions  = none
+
+[ policy_iot ]
+commonName             = supplied
+organizationName       = optional
+
+[ req ]
+distinguished_name = dn
+prompt             = no
+
+[ dn ]
+O  = Iot_rct
+CN = IoT lab CA
+
+# Certyfikat samego CA
+[ v3_ca ]
+basicConstraints       = critical, CA:TRUE
+keyUsage               = critical, keyCertSign, cRLSign
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid:always
+
+# Certyfikat urządzenia: tylko uwierzytelnianie klienta
+[ device_ext ]
+basicConstraints       = critical, CA:FALSE
+keyUsage               = critical, digitalSignature
+extendedKeyUsage       = clientAuth
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid
+
+# Certyfikat usługi (mosquitto, REST): uwierzytelnianie serwera, adresy w SAN
+[ server_ext ]
+basicConstraints       = critical, CA:FALSE
+keyUsage               = critical, digitalSignature
+extendedKeyUsage       = serverAuth
+subjectKeyIdentifier   = hash
+authorityKeyIdentifier = keyid
+subjectAltName         = $ENV::IOT_SAN

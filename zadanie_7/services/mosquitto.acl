@@ -1,0 +1,11 @@
+# mosquitto.acl — najmniejsze uprawnienia (zadanie 7)
+# %u = nazwa użytkownika = CN z certyfikatu klienta
+
+# urządzenie: zapis tylko do własnej gałęzi, odczyt tylko poleceń dla siebie
+pattern write iot/%u/#
+pattern read  cmd/%u/#
+
+# operator (certyfikat CN=operator): podgląd telemetrii wszystkich urządzeń
+user operator
+topic read iot/#
+topic write cmd/#

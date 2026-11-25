@@ -1,0 +1,54 @@
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:13", "cert": "1004"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:14", "cert": "1004"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:16", "cert": "1004"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:18", "cert": "1004"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:20", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:21", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:23", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:25", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:26", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:28", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:30", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:31", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:33", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:35", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:36", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:38", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:39", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:41", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:43", "cert": "1005"}
+iot/iot-e0ccbdfd47f1/telemetry {"t": "11:49:44", "cert": "1005"}
+
+iot-identity info
+urządzenie: iot-e0ccbdfd47f1
+klucz:      device-20261125114419
+URI:        pkcs11:token=iot-identity;object=device-20261125114419;type=private
+subject=CN=iot-e0ccbdfd47f1, O=Iot_rct
+issuer=O=Iot_rct, CN=IoT lab CA
+serial=1005
+notAfter=Nov 25 11:48:50 2027 GMT
+
+work@COMP:~/Iot_rct$ $CA revoke ~/iot-ca/newcerts/1004.pem
+Using configuration from /home/work/Iot_rct/zadanie_7/ca/openssl-ca.cnf
+Revoking Certificate 1004.
+Database updated
+Using configuration from /home/work/Iot_rct/zadanie_7/ca/openssl-ca.cnf
+    Serial Number: 1004
+        Revocation Date: Nov 25 11:52:10 2026 GMT
+work@COMP:~/Iot_rct$ $CA revoke ~/iot-ca/newcerts/1002.pem
+Using configuration from /home/work/Iot_rct/zadanie_7/ca/openssl-ca.cnf
+Revoking Certificate 1002.
+Database updated
+Using configuration from /home/work/Iot_rct/zadanie_7/ca/openssl-ca.cnf
+    Serial Number: 1002
+        Revocation Date: Nov 25 11:52:14 2026 GMT
+    Serial Number: 1004
+        Revocation Date: Nov 25 11:52:10 2026 GMT
+work@COMP:~/Iot_rct$ $CA list
+V       271125090649Z           1000    unknown /CN=mosquitto/O=Iot_rct
+V       271125090703Z           1001    unknown /CN=rest/O=Iot_rct
+R       271125092824Z   261125115214Z   1002    unknown /CN=iot-dfeee540c18f/O=Iot_rct
+V       271125095818Z           1003    unknown /CN=operator/O=Iot_rct
+R       271125113756Z   261125115210Z   1004    unknown /CN=iot-e0ccbdfd47f1/O=Iot_rct
+V       271125114850Z           1005    unknown /CN=iot-e0ccbdfd47f1/O=Iot_rct
+

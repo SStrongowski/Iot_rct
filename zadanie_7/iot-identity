@@ -1,0 +1,106 @@
+#!/bin/sh
+# iot-identity — tożsamość urządzenia: klucz w TPM (tpm2-pkcs11), CSR, certyfikat (zadanie 7)
+#
+#   iot-identity init               jednorazowo: identyfikator urządzenia, magazyn i token tpm2-pkcs11
+#   iot-identity newkey             nowy klucz EC P-256 w TPM + CSR (pierwszy klucz albo rotacja)
+#   iot-identity activate <crt>     przyjęcie certyfikatu z CA dla ostatniego klucza, przełączenie na niego
+#   iot-identity info               bieżący klucz, certyfikat, URI PKCS#11
+#   iot-identity env                zmienne dla klientów (OPENSSL_CONF, URI) — do użycia: eval "$(iot-identity env)"
+#
+# Wszystko na partycji persist (wspólnej dla slotów A/B) — tożsamość przeżywa aktualizacje.
+# Klucz prywatny powstaje w TPM i nigdy go nie opuszcza; w magazynie jest tylko blob opakowany przez TPM.
+set -eu
+
+ID_DIR=/persist/identity
+STORE=$ID_DIR/tpm2-pkcs11
+TOKEN=iot-identity
+export TPM2_PKCS11_STORE=$STORE
+export TPM2_PKCS11_TCTI=device:/dev/tpmrm0
+export TPM2TOOLS_TCTI=device:/dev/tpmrm0
+
+die() { echo "BŁĄD: $*" >&2; exit 1; }
+
+module_path() {
+    for m in /usr/lib/pkcs11/libtpm2_pkcs11.so /usr/lib/libtpm2_pkcs11.so /usr/lib/libtpm2_pkcs11.so.0; do
+        [ -e "$m" ] && { echo "$m"; return 0; }
+    done
+    die "nie znaleziono modułu libtpm2_pkcs11"
+}
+
+# konfiguracja OpenSSL: engine PKCS#11 (libp11) z modułem tpm2-pkcs11
+openssl_conf() {
+    mkdir -p /run/iot-identity
+    cat > /run/iot-identity/openssl.cnf << EOF
+openssl_conf = openssl_init
+[openssl_init]
+engines = engine_section
+[engine_section]
+pkcs11 = pkcs11_section
+[pkcs11_section]
+engine_id = pkcs11
+MODULE_PATH = $(module_path)
+init = 0
+EOF
+    echo /run/iot-identity/openssl.cnf
+}
+
+device_id() { cat "$ID_DIR/device-id"; }
+pin()       { cat "$ID_DIR/pin"; }
+current()   { cat "$ID_DIR/current" 2>/dev/null || true; }
+uri()       { echo "pkcs11:token=$TOKEN;object=$1;type=private?pin-value=$(pin)"; }
+
+case "${1:-}" in
+init)
+    [ -e "$ID_DIR/device-id" ] && die "tożsamość już istnieje ($ID_DIR)"
+    mkdir -p "$STORE"; chmod 700 "$ID_DIR"
+    echo "iot-$(openssl rand -hex 6)" > "$ID_DIR/device-id"
+    openssl rand -hex 8 > "$ID_DIR/pin"
+    openssl rand -hex 8 > "$ID_DIR/so-pin"
+    chmod 600 "$ID_DIR/pin" "$ID_DIR/so-pin"
+    tpm2_ptool init --path="$STORE"
+    tpm2_ptool addtoken --path="$STORE" --pid=1 --label="$TOKEN" \
+        --userpin="$(pin)" --sopin="$(cat "$ID_DIR/so-pin")"
+    echo "urządzenie: $(device_id)"
+    ;;
+newkey)
+    [ -e "$ID_DIR/device-id" ] || die "najpierw: iot-identity init"
+    kl="device-$(date +%Y%m%d%H%M%S)"
+    tpm2_ptool addkey --path="$STORE" --label="$TOKEN" --key-label="$kl" \
+        --algorithm=ecc256 --userpin="$(pin)"
+    OPENSSL_CONF=$(openssl_conf) openssl req -new -engine pkcs11 -keyform engine \
+        -key "$(uri "$kl")" -subj "/O=Iot_rct/CN=$(device_id)" -out "$ID_DIR/$kl.csr"
+    echo "$kl" > "$ID_DIR/pending"
+    echo "klucz: $kl"
+    echo "CSR:   $ID_DIR/$kl.csr  (do podpisu w CA)"
+    ;;
+activate)
+    crt="${2:?plik certyfikatu z CA}"
+    kl=$(cat "$ID_DIR/pending" 2>/dev/null) || die "brak oczekującego klucza (iot-identity newkey)"
+    # certyfikat musi pasować do klucza z TPM: porównanie kluczy publicznych
+    cpub=$(openssl x509 -in "$crt" -noout -pubkey)
+    kpub=$(openssl req -in "$ID_DIR/$kl.csr" -noout -pubkey)
+    [ "$cpub" = "$kpub" ] || die "certyfikat nie pasuje do klucza $kl"
+    cp "$crt" "$ID_DIR/$kl.crt"
+    echo "$kl" > "$ID_DIR/current.new" && mv "$ID_DIR/current.new" "$ID_DIR/current"   # przełączenie atomowe
+    rm -f "$ID_DIR/pending"
+    echo "aktywny klucz: $kl"
+    openssl x509 -in "$ID_DIR/$kl.crt" -noout -subject -serial -enddate
+    ;;
+info)
+    echo "urządzenie: $(device_id)"
+    kl=$(current); [ -n "$kl" ] || { echo "brak aktywnego certyfikatu"; exit 0; }
+    echo "klucz:      $kl"
+    echo "URI:        pkcs11:token=$TOKEN;object=$kl;type=private"
+    openssl x509 -in "$ID_DIR/$kl.crt" -noout -subject -issuer -serial -enddate
+    ;;
+env)
+    kl=$(current); [ -n "$kl" ] || die "brak aktywnego certyfikatu"
+    echo "export TPM2_PKCS11_STORE=$STORE TPM2_PKCS11_TCTI=$TPM2_PKCS11_TCTI"
+    echo "export OPENSSL_CONF=$(openssl_conf)"
+    echo "export IOT_KEY='$(uri "$kl")'"
+    echo "export IOT_CERT=$ID_DIR/$kl.crt"
+    ;;
+*)
+    sed -n '2,10p' "$0"; exit 2
+    ;;
+esac

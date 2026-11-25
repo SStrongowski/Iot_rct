@@ -1,0 +1,59 @@
+From 219425ecfb159d6b7a53b0a752906bd5b61fa249 Mon Sep 17 00:00:00 2001
+From: Sebastian <damianmontazysta@gmail.com>
+Date: Wed, 25 Nov 2026 11:33:47 +0100
+Subject: [PATCH] client: set TLS engine and keyform before mosquitto_tls_set
+
+With --keyform engine the key argument is an engine key id (e.g. a
+pkcs11: URI). mosquitto_tls_set() was called before the keyform was set,
+so the key was checked as a PEM file and rejected (MOSQ_ERR_INVAL,
+reported as 'File not found').
+
+Upstream-Status: Pending
+---
+ client/client_shared.c | 26 ++++++++++++++------------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
+
+diff --git a/client/client_shared.c b/client/client_shared.c
+index 9182752..0ef4774 100644
+--- a/client/client_shared.c
++++ b/client/client_shared.c
+@@ -1369,6 +1369,20 @@ static int client_tls_opts_set(struct mosquitto *mosq, struct mosq_config *cfg)
+ 		mosquitto_int_option(mosq, MOSQ_OPT_SSL_CTX_WITH_DEFAULTS, 1);
+ 		SSL_CTX_set_keylog_callback(cfg->ssl_ctx, tls_keylog_callback);
+ 	}
++	/* engine i keyform PRZED mosquitto_tls_set: inaczej klucz z engine
++	* (np. URI pkcs11:) jest sprawdzany jak plik PEM i odrzucany */
++	if(cfg->tls_engine && mosquitto_string_option(mosq, MOSQ_OPT_TLS_ENGINE, cfg->tls_engine)){
++		err_printf(cfg, "Error: Problem setting TLS engine, is %s a valid engine?\n", cfg->tls_engine);
++		return 1;
++	}
++	if(cfg->keyform && mosquitto_string_option(mosq, MOSQ_OPT_TLS_KEYFORM, cfg->keyform)){
++		err_printf(cfg, "Error: Problem setting key form, it must be one of 'pem' or 'engine'.\n");
++		return 1;
++	}
++	if(cfg->tls_engine_kpass_sha1 && mosquitto_string_option(mosq, MOSQ_OPT_TLS_ENGINE_KPASS_SHA1, cfg->tls_engine_kpass_sha1)){
++		err_printf(cfg, "Error: Problem setting TLS engine key pass sha, is it a 40 character hex string?\n");
++		return 1;
++	}
+ 
+ 	if(cfg->cafile || cfg->capath){
+ 		rc = mosquitto_tls_set(mosq, cfg->cafile, cfg->capath, cfg->certfile, cfg->keyfile, NULL);
+@@ -1398,18 +1412,6 @@ static int client_tls_opts_set(struct mosquitto *mosq, struct mosq_config *cfg)
+ 		err_printf(cfg, "Error: Problem setting TLS insecure option.\n");
+ 		return 1;
+ 	}
+-	if(cfg->tls_engine && mosquitto_string_option(mosq, MOSQ_OPT_TLS_ENGINE, cfg->tls_engine)){
+-		err_printf(cfg, "Error: Problem setting TLS engine, is %s a valid engine?\n", cfg->tls_engine);
+-		return 1;
+-	}
+-	if(cfg->keyform && mosquitto_string_option(mosq, MOSQ_OPT_TLS_KEYFORM, cfg->keyform)){
+-		err_printf(cfg, "Error: Problem setting key form, it must be one of 'pem' or 'engine'.\n");
+-		return 1;
+-	}
+-	if(cfg->tls_engine_kpass_sha1 && mosquitto_string_option(mosq, MOSQ_OPT_TLS_ENGINE_KPASS_SHA1, cfg->tls_engine_kpass_sha1)){
+-		err_printf(cfg, "Error: Problem setting TLS engine key pass sha, is it a 40 character hex string?\n");
+-		return 1;
+-	}
+ 	if(cfg->tls_alpn && mosquitto_string_option(mosq, MOSQ_OPT_TLS_ALPN, cfg->tls_alpn)){
+ 		err_printf(cfg, "Error: Problem setting TLS ALPN protocol.\n");
+ 		return 1;
